@@ -1,11 +1,23 @@
 package com.sustech.ooad.controller;
 
+import com.sustech.ooad.entity.GeoInfo.Country;
+import com.sustech.ooad.service.MapSelectionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 @RestController
 public class MapSelectionController {
 
-    @GetMapping("//resources/map/countries")
-    public List<>
+    @Autowired
+    MapSelectionService mapSelectionService;
+    @GetMapping("/resources/map/countries")
+    public List<Country> getAllCountries(){
+        List<Country> countryList = mapSelectionService.getAllCountries();
+        return countryList;
+    }
 }
