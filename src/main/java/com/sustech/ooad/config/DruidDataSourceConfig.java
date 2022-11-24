@@ -16,7 +16,8 @@ import java.sql.Array;
 import java.sql.SQLException;
 import java.util.Arrays;
 
-@Configuration
+@Deprecated
+//@Configuration
 public class DruidDataSourceConfig {
 
     @ConfigurationProperties("spring.datasource")
