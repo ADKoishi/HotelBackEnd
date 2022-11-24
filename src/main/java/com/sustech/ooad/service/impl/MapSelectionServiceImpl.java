@@ -1,51 +1,62 @@
 package com.sustech.ooad.service.impl;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.sustech.ooad.Utils.WorldAddressUtils;
-import com.sustech.ooad.entity.GeoInfo.City;
-import com.sustech.ooad.entity.GeoInfo.Country;
+import com.sustech.ooad.entity.geoInfo.*;
+import com.sustech.ooad.mapper.geoInfoMappers.CityMapper;
+import com.sustech.ooad.mapper.geoInfoMappers.CountryMapper;
+import com.sustech.ooad.mapper.geoInfoMappers.StateMapper;
 import com.sustech.ooad.service.MapSelectionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class MapSelectionServiceImpl implements MapSelectionService {
+
+    @Autowired
+    CountryMapper countryMapper;
     @Override
-    public List<Country> getAllCountries() {
-        List<Country> countryList = new ArrayList<>();
-        String[] locales = Locale.getISOCountries();
-        Locale USLocale = new Locale("", "US");
-        for (String countryCode : locales){
-            Locale locale = new Locale("", countryCode);
-            countryList.add(new Country(locale.getDisplayCountry(USLocale), locale.getCountry()));
+    public List<SimplifiedCountry> getAllCountries() {
+        List<Country> countryList = countryMapper.getAllCountries();
+        List<SimplifiedCountry> simplifiedCountryList = new ArrayList<>();
+        for (Country country: countryList){
+            simplifiedCountryList.add(new SimplifiedCountry(
+                    country.getName(),
+                    country.getIso2()
+            ));
         }
-        return countryList;
+        return simplifiedCountryList;
     }
 
+    @Autowired
+    StateMapper stateMapper;
     @Override
-    public List<City> getCitiesByCountryCode(String countryCode) {
-        List<City> cityList = new ArrayList<>();
-        WorldAddressUtils worldAddressUtils = new WorldAddressUtils();
-        JSONArray resultSet = worldAddressUtils.getProvinceFromCountry(countryCode)
-                .getJSONArray("countrysProvince");
-        if (resultSet == null){
-            return cityList;
+    public List<SimplifiedState> getStatesByCountryCode(String countryCode) {
+        List<State> stateList = stateMapper.getStatesByCountryCode(countryCode);
+        List<SimplifiedState> simplifiedStateList = new ArrayList<>();
+        for (State state: stateList){
+            simplifiedStateList.add(new SimplifiedState(
+                    state.getName(),
+                    state.getIso2()
+            ));
         }
-        resultSet = resultSet
-                .getJSONObject(0)
-                .getJSONArray("provinceCity");
 
-        Map<String, String> ENDict = worldAddressUtils.getCnEnglishMap();
-        Base64.Encoder nameEncode = Base64.getEncoder();
-        for (int i = 0; i < resultSet.size() ; i ++) {
-            JSONObject PNCTuple = resultSet.getJSONObject(i);
-            String CNProvinceName = PNCTuple.get("province").toString();
-            String ENProvinceName = ENDict.get(CNProvinceName);
-            String ProvinceCode = nameEncode.encodeToString(ENProvinceName.getBytes());
-            cityList.add(new City(ENProvinceName, ProvinceCode));
+        return simplifiedStateList;
+    }
+
+    @Autowired
+    CityMapper cityMapper;
+    @Override
+    public List<SimplifiedCity> getCitiesByStateCode(String countryCode ,String stateCode) {
+        List<City> cityList = cityMapper.getCitiesByStateCode(countryCode, stateCode);
+        List<SimplifiedCity> simplifiedCityList = new ArrayList<>();
+        Base64.Encoder cityNameEncoder = Base64.getEncoder();
+        for(City city: cityList){
+            String aggregatedName = countryCode + "-" + stateCode + "-" + city.getName();
+            String B64CityName = cityNameEncoder.encodeToString(aggregatedName.getBytes());
+            simplifiedCityList.add(new SimplifiedCity(city.getName(), B64CityName));
         }
-        return cityList;
+
+        return simplifiedCityList;
     }
 }

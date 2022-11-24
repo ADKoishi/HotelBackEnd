@@ -1,14 +1,14 @@
 package com.sustech.ooad.service;
 
-import com.alibaba.fastjson.JSONObject;
-import com.sustech.ooad.entity.GeoInfo.City;
-import com.sustech.ooad.entity.GeoInfo.Country;
-import org.springframework.stereotype.Service;
+import com.sustech.ooad.entity.geoInfo.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MapSelectionService {
-    List<Country> getAllCountries();
+    List<SimplifiedCountry> getAllCountries();
 
-    List<City> getCitiesByCountryCode(String countryCode);
+    List<SimplifiedState> getStatesByCountryCode(String countryCode);
+
+    List<SimplifiedCity> getCitiesByStateCode(String CountryCode, String stateCode);
 }

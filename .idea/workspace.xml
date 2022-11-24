@@ -5,7 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6150968-fb3c-42e7-a7e6-5961e740814f" name="变更" comment="updated">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/geoInfo/SimplifiedCity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/geoInfo/SimplifiedCountry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/geoInfo/SimplifiedState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/geoInfo/State.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/geoInfoMappers/CityMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/geoInfoMappers/CountryMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/geoInfoMappers/StateMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mappers/CityMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mappers/CountryMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mappers/StateMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/Utils/WorldAddressUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/Utils/worldAddress.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/MapSelectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/MapSelectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/TestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/TestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/GeoInfo/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/geoInfo/City.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/GeoInfo/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/geoInfo/Country.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/CategoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/CategoryMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/ClipPathMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/ClipPathMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/CustomerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/CustomerMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/FloorMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/FloorMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/HotelMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/HotelMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/NoticeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/NoticeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/OfferMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/OfferMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/OfferTyperMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/OfferTyperMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/OfferingMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/OfferingMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/OrderMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/ReviewMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/ReviewMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/RoomMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/RoomMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/TestEntityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/TestEntityMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/UserLabelMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/UserLabelMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/UserRoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/UserRoleMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/MapSelectionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/MapSelectionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/MapSelectionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/MapSelectionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mappers/TestEntityMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mappers/TestEntityMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/sustech/ooad/controller/TestHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/sustech/ooad/controller/TestHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/sustech/ooad/mapper/TestEntityMapper.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +70,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -72,27 +109,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/25749/Desktop/OOAD/final_project/hotel&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;e919c49d5f0cd737285367810a3394d0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/25749/Desktop/OOAD/final_project/hotel/src/main/resources/mybatis/mappers",
+    "spring.configuration.checksum": "e919c49d5f0cd737285367810a3394d0"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\25749\Desktop\OOAD\final_project\hotel\src\main\resources\mybatis\mappers" />
       <recent name="C:\Users\25749\Desktop\OOAD\final_project\hotel" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -101,6 +140,9 @@
       <recent name="C:\Users\25749\Desktop\OOAD\final_project\hotel\src\main\java\com\sustech\ooad\entity\GeoInfo" />
       <recent name="C:\Users\25749\Desktop\OOAD\final_project\hotel\src\main\resources\templates" />
       <recent name="C:\Users\25749\Desktop\OOAD\final_project\hotel\src\main\resources\static" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.sustech.ooad.entity.geoInfo" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -167,7 +209,7 @@
       <workItem from="1668743216694" duration="634000" />
       <workItem from="1669137802489" duration="3193000" />
       <workItem from="1669141767311" duration="5582000" />
-      <workItem from="1669278003645" duration="19284000" />
+      <workItem from="1669278003645" duration="23451000" />
     </task>
     <task id="LOCAL-00001" summary="updated">
       <created>1669284360932</created>
@@ -225,7 +267,28 @@
       <option name="project" value="LOCAL" />
       <updated>1669299767758</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="updated">
+      <created>1669304352172</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1669304352172</updated>
+    </task>
+    <task id="LOCAL-00010" summary="updated">
+      <created>1669304414552</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1669304414552</updated>
+    </task>
+    <task id="LOCAL-00011" summary="updated">
+      <created>1669304456098</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1669304456098</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,21 +306,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="updated" />
     <option name="LAST_COMMIT_MESSAGE" value="updated" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/MapSelectionController.java</url>
-          <line>20</line>
-          <properties class="com.sustech.ooad.controller.MapSelectionController" method="getAllCountries">
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

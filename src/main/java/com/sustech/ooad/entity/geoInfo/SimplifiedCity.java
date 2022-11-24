@@ -1,11 +1,11 @@
-package com.sustech.ooad.entity.GeoInfo;
+package com.sustech.ooad.entity.geoInfo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Country {
+public class SimplifiedCity {
     String name;
     String code;
 }

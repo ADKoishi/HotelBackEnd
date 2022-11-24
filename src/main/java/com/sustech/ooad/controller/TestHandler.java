@@ -1,7 +1,7 @@
 package com.sustech.ooad.controller;
 
 import com.sustech.ooad.entity.data.TestEntity;
-import com.sustech.ooad.mapper.TestEntityMapper;
+import com.sustech.ooad.mapper.dataMappers.TestEntityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
