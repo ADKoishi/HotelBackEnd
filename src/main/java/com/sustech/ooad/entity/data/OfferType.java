@@ -4,4 +4,7 @@ import lombok.Data;
 
 @Data
 public class OfferType {
+    Integer id;
+    String name;
+    String description;
 }

@@ -7,13 +7,13 @@ CREATE TABLE hotels(
 	
 	name VARCHAR(400) NOT NULL,
 
-	contact_code VARCHAR(20) NOT NULL,
+	contact_code VARCHAR(5) NOT NULL,
 
-	contact VARCHAR(5) NOT NULL,
+	contact VARCHAR(20) NOT NULL,
 	
 	address VARCHAR(800) NOT NULL,
 
-	map_2scale INTEGER NOT NULL,
+	scale INTEGER NOT NULL,
 
 	priority INTEGER NOT NULL,
 
@@ -184,7 +184,7 @@ CREATE TABLE user_roles (
 
 	name VARCHAR(20) DEFAULT 'customer',
 
-	numer INTEGER DEFAULT 1
+	number INTEGER DEFAULT 1
 );
 
 

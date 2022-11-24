@@ -4,4 +4,7 @@ import lombok.Data;
 
 @Data
 public class UserRole {
+    Integer id;
+    String name;
+    Integer number;
 }
