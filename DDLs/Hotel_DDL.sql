@@ -117,9 +117,14 @@ CREATE TABLE clip_path(
 CREATE TABLE users (
 	id SERIAL NOT NULL,
 
-	role_id INTEGER NOT NULL,
+	/*
+		1. CUSTOMER
+		2. ADMIN
+		3. EMPLOYEE
+	*/
+	role INTEGER NOT NULL DEFAULT 1,
 	
-	label_id INTEGER NOT NULL,
+	labels VARCHAR(6) NOT NULL DEFAULT '000000',
 
 	firstname VARCHAR(40),
 
@@ -177,15 +182,6 @@ CREATE TABLE customers (
 CREATE TABLE customers_avail PARTITION OF customers FOR VALUES FROM (0) TO (1);
 
 CREATE TABLE customers_unavail PARTITION OF customers FOR VALUES FROM (1) TO (2);
-
-
-CREATE TABLE user_roles (
-	id SERIAL NOT NULL,
-
-	name VARCHAR(20) DEFAULT 'customer',
-
-	number INTEGER DEFAULT 1
-);
 
 
 CREATE TABLE user_labels (

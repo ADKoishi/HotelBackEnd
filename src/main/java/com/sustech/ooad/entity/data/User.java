@@ -8,8 +8,8 @@ import java.sql.Timestamp;
 @Data
 public class User {
     Integer id;
-    Integer role_id;
-    Integer label_id;
+    Integer role;
+    String labels;
     String firstname;
     String lastname;
     Timestamp enrolled_date;

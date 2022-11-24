@@ -5,23 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6150968-fb3c-42e7-a7e6-5961e740814f" name="变更" comment="updated">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/UserAccountService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/UserAccountServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DDLs/Hotel_DDL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DDLs/Hotel_DDL.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/ClipPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/ClipPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Floor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Floor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Hotel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Notice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Notice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Offer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Offer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/OfferType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/OfferType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Offering.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Offering.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/TestHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/TestEntity.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/UserLabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/UserLabel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/UserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/UserRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/UserLabel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/UserRole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/CustomerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/CustomerMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/TestEntityMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/UserLabelMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/UserRoleMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/TestService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mappers/TestEntityMapper.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,8 +48,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -188,7 +187,7 @@
       <workItem from="1668743216694" duration="634000" />
       <workItem from="1669137802489" duration="3193000" />
       <workItem from="1669141767311" duration="5582000" />
-      <workItem from="1669278003645" duration="25400000" />
+      <workItem from="1669278003645" duration="28306000" />
     </task>
     <task id="LOCAL-00001" summary="updated">
       <created>1669284360932</created>
@@ -274,7 +273,21 @@
       <option name="project" value="LOCAL" />
       <updated>1669308536087</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="updated">
+      <created>1669310381086</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1669310381086</updated>
+    </task>
+    <task id="LOCAL-00014" summary="updated">
+      <created>1669310412845</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1669310412845</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
