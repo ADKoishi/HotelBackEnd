@@ -10,15 +10,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Authored By baobao555#
- * https://blog.csdn.net/weixin_45070175/article/details/118559272
+ * Authored By 西凉的悲伤
+ * https://blog.csdn.net/qq_33697094/article/details/111663292
  */
 public class WorldAddressUtils {
 
     /**
      * 用于读取解析的地址路径
      */
-    private final String addressFilePath = "worldAddress.txt";
+    private final String addressFilePath = "TXTResources/worldAddress.txt";
     /**
      * 是否过滤A、B、C...之类的国家分割符号，true过滤，false不过滤
      */
@@ -32,6 +32,12 @@ public class WorldAddressUtils {
      * 存放所有英文和中文，<英文，中文>
      */
     private Map<String, String> englishCnMap = new HashMap<>();
+    private Map<String, String> cnEnglishMap = new HashMap<>();
+
+    public Map<String, String> getCnEnglishMap() {
+        return cnEnglishMap;
+    }
+
     /**
      * 存放所有国家
      */
@@ -67,6 +73,7 @@ public class WorldAddressUtils {
                 //enName是中文的地名
                 String cnName = engCn[1].trim();
                 englishCnMap.put(engCn[0].trim().toLowerCase(), cnName);
+                cnEnglishMap.put(cnName, enName);
                 char[] chars = engCn[0].toCharArray();
                 //每一行前的空格数，0是国家，2是省会，4是城市
                 int spaceCount = 0;
