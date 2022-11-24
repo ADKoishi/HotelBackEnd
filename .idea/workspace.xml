@@ -4,27 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6150968-fb3c-42e7-a7e6-5961e740814f" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HELP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/application.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/sustech/ooad/HotelApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/sustech/ooad/config/DruidDataSourceConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/sustech/ooad/controller/TestHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/sustech/ooad/entity/TestEntity.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/sustech/ooad/mapper/TestEntityMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mapper/TestEntityMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/mybatis-config.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/com/example/demo/HotelApplicationTests.class" afterDir="false" />
+    <list default="true" id="c6150968-fb3c-42e7-a7e6-5961e740814f" name="变更" comment="updated">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/Utils/JWTUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +35,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -180,8 +163,16 @@
       <workItem from="1668743216694" duration="634000" />
       <workItem from="1669137802489" duration="3193000" />
       <workItem from="1669141767311" duration="5582000" />
-      <workItem from="1669278003645" duration="4254000" />
+      <workItem from="1669278003645" duration="5495000" />
     </task>
+    <task id="LOCAL-00001" summary="updated">
+      <created>1669284360932</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1669284360932</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,5 +188,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated" />
   </component>
 </project>
