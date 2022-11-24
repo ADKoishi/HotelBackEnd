@@ -1,4 +1,4 @@
-package com.sustech.ooad.entity;
+package com.sustech.ooad.entity.data;
 
 import lombok.Data;
 

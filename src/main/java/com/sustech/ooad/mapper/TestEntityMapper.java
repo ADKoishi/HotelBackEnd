@@ -1,6 +1,6 @@
 package com.sustech.ooad.mapper;
 
-import com.sustech.ooad.entity.TestEntity;
+import com.sustech.ooad.entity.data.TestEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
