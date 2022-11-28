@@ -7,13 +7,13 @@ CREATE TABLE hotels(
 	
 	name VARCHAR(400) NOT NULL,
 
-	contact_code VARCHAR(5) NOT NULL,
+	contact_code VARCHAR(20) NOT NULL,
 
-	contact VARCHAR(20) NOT NULL,
+	contact VARCHAR(5) NOT NULL,
 	
 	address VARCHAR(800) NOT NULL,
 
-	scale INTEGER NOT NULL,
+	map_2scale INTEGER NOT NULL,
 
 	priority INTEGER NOT NULL,
 
@@ -117,14 +117,9 @@ CREATE TABLE clip_path(
 CREATE TABLE users (
 	id SERIAL NOT NULL,
 
-	/*
-		1. CUSTOMER
-		2. ADMIN
-		3. EMPLOYEE
-	*/
-	role INTEGER NOT NULL DEFAULT 1,
+	role_id INTEGER NOT NULL,
 	
-	labels VARCHAR(6) NOT NULL DEFAULT '000000',
+	label_id INTEGER NOT NULL,
 
 	firstname VARCHAR(40),
 
@@ -152,24 +147,24 @@ CREATE TABLE users_unavail PARTITION OF users FOR VALUES FROM (1) TO (2);
 CREATE TABLE customers (
 	user_id INTEGER NOT NULL,
 	
-	name_prefix VARCHAR(10),
-	name_suffix VARCHAR(10),
+	name_prefix VARCHAR(10) DEFAULT NULL,
+	name_suffix VARCHAR(10) DEFAULT NULL,
 	
-	phone_number VARCHAR(15) NOT NULL,
+	phone_number VARCHAR(15) DEFAULT NULL,
 	
-	phone_head VARCHAR(5) NOT NULL,
+	phone_head VARCHAR(5) DEFAULT NULL,
 	
-	mail VARCHAR(100),
+	mail VARCHAR(100) NOT NULL,
 	
-	birthday DATE,
+	birthday DATE DEFAULT NULL,
 
-	gender VARCHAR(20),
+	gender VARCHAR(20) DEFAULT NULL,
 	
 	points INTEGER NOT NULL DEFAULT 0,
 	
 	accumulated INTEGER NOT NULL DEFAULT 0,
 	
-	country VARCHAR(20),
+	country VARCHAR(20) DEFAULT NULL,
 	
 	last_visited INTEGER NOT NULL DEFAULT 0,
 	
@@ -182,6 +177,15 @@ CREATE TABLE customers (
 CREATE TABLE customers_avail PARTITION OF customers FOR VALUES FROM (0) TO (1);
 
 CREATE TABLE customers_unavail PARTITION OF customers FOR VALUES FROM (1) TO (2);
+
+
+CREATE TABLE user_roles (
+	id SERIAL NOT NULL,
+
+	name VARCHAR(20) DEFAULT 'customer',
+
+	numer INTEGER DEFAULT 1
+);
 
 
 CREATE TABLE user_labels (
@@ -311,4 +315,4 @@ CREATE TABLE notices (
 
 CREATE TABLE notices_avail PARTITION OF notices FOR VALUES FROM (0) TO (1);
 
-CREATE TABLE notices_unavail PARTITION OF notices FOR VALUES FROM (1) TO (2);
+CREATE TABLE notices_unavail PARTITION OF notices FOR VALUES FROM (1) TO (2);states
