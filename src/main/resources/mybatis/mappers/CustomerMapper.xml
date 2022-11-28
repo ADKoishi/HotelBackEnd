@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sustech.ooad.mapper.dataMappers.CustomerMapper">
+    <select id="getCustomerByMail" resultType="com.sustech.ooad.entity.data.Customer">
+        select * from customers where mail = #{mail} and deleted = 0
+    </select>
+    <insert id="signUpInsert" parameterType="com.sustech.ooad.entity.data.Customer">
+        insert into customers(user_id, mail, birthday, country)
+        values(#{user_id}, #{mail}, #{birthday}, #{country})
+    </insert>
+</mapper>
