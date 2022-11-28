@@ -4,6 +4,6 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sustech.ooad.mapper.geoInfoMappers.CityMapper">
     <select id="getCitiesByStateCode" resultType="com.sustech.ooad.entity.geoInfo.City">
-        select * from cities where country_code = #{countryCode} and state_code = #{stateCode}
+        SELECT * FROM cities WHERE country_code = #{countryCode} AND state_code = #{stateCode}
     </select>
 </mapper>

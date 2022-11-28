@@ -9,4 +9,7 @@ public interface UserMapper {
 
     void signUpInsert(User user);
 
+    void setPasswdByID(Integer id, String password);
+
+    User getUserByMail(String mail);
 }

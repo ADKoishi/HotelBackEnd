@@ -24,7 +24,7 @@ public class JWTUtils {
      * @return token字符串
      */
     public static String getToken(Map<String,String> payload){
-        // 指定token过期时间为7天
+        // 指定token过期时间为10小时
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.HOUR, 10);
 

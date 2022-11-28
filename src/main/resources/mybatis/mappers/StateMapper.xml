@@ -4,6 +4,6 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sustech.ooad.mapper.geoInfoMappers.StateMapper">
     <select id="getStatesByCountryCode" resultType="com.sustech.ooad.entity.geoInfo.State">
-        select * from states where country_code = #{countryCode}
+        SELECT * FROM states WHERE country_code = #{countryCode}
     </select>
 </mapper>

@@ -4,6 +4,6 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sustech.ooad.mapper.geoInfoMappers.CountryMapper">
     <select id="getAllCountries" resultType="com.sustech.ooad.entity.geoInfo.Country">
-        select * from countries
+        SELECT * FROM countries
     </select>
 </mapper>
