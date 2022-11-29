@@ -6,14 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c6150968-fb3c-42e7-a7e6-5961e740814f" name="变更" comment="updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/HotelApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/HotelApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DDLs/Hotel_DDL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DDLs/Hotel_DDL.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/CustomerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/CustomerMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/geoInfoMappers/CityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/geoInfoMappers/CityMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/geoInfoMappers/CountryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/geoInfoMappers/CountryMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/geoInfoMappers/StateMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/geoInfoMappers/StateMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/sustech/ooad/HotelApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/sustech/ooad/HotelApplication.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +54,7 @@
     </option>
     <option name="myId2Visible">
       <map>
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
         <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
     </option>
@@ -115,6 +112,7 @@
       <recent name="C:\Users\25749\Desktop\OOAD\final_project\hotel\src\main\resources\static" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.sustech.ooad.config" />
       <recent name="com.sustech.ooad.entity.response" />
       <recent name="com.sustech.ooad.entity.geoInfo" />
     </key>
@@ -198,7 +196,7 @@
       <workItem from="1669317076375" duration="2056000" />
       <workItem from="1669642193983" duration="12600000" />
       <workItem from="1669698394920" duration="4740000" />
-      <workItem from="1669722283373" duration="2655000" />
+      <workItem from="1669722283373" duration="3129000" />
     </task>
     <task id="LOCAL-00001" summary="updated">
       <created>1669284360932</created>
@@ -375,7 +373,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669723410019</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="updated">
+      <created>1669725042763</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1669725042763</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

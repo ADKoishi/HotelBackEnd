@@ -145,7 +145,7 @@ CREATE TABLE users_unavail PARTITION OF users FOR VALUES FROM (1) TO (2);
 
 
 CREATE TABLE customers (
-	user_id INTEGER NOT NULL,
+	id INTEGER NOT NULL,
 	
 	name_prefix VARCHAR(10) DEFAULT NULL,
 	name_suffix VARCHAR(10) DEFAULT NULL,
@@ -297,4 +297,4 @@ CREATE TABLE notices (
 
 CREATE TABLE notices_avail PARTITION OF notices FOR VALUES FROM (0) TO (1);
 
-CREATE TABLE notices_unavail PARTITION OF notices FOR VALUES FROM (1) TO (2);states
+CREATE TABLE notices_unavail PARTITION OF notices FOR VALUES FROM (1) TO (2);

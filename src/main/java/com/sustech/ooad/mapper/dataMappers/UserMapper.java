@@ -1,10 +1,11 @@
 package com.sustech.ooad.mapper.dataMappers;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sustech.ooad.entity.data.User;
 import org.apache.ibatis.annotations.Mapper;
 
 
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<User> {
 
     void signUpInsert(User user);
 
