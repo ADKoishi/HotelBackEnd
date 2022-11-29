@@ -7,13 +7,13 @@ CREATE TABLE hotels(
 	
 	name VARCHAR(400) NOT NULL,
 
-	contact_code VARCHAR(20) NOT NULL,
+	contact_code VARCHAR(5) NOT NULL,
 
-	contact VARCHAR(5) NOT NULL,
+	contact VARCHAR(20) NOT NULL,
 	
 	address VARCHAR(800) NOT NULL,
 
-	map_2scale INTEGER NOT NULL,
+	scale INTEGER NOT NULL,
 
 	priority INTEGER NOT NULL,
 
@@ -117,9 +117,9 @@ CREATE TABLE clip_path(
 CREATE TABLE users (
 	id SERIAL NOT NULL,
 
-	role_id INTEGER NOT NULL,
-	
-	label_id INTEGER NOT NULL,
+	role INTEGER DEFAULT 1 NOT NULL,
+
+	labels VARCHAR(6) default '000000' NOT NULL,
 
 	firstname VARCHAR(40),
 
@@ -177,24 +177,6 @@ CREATE TABLE customers (
 CREATE TABLE customers_avail PARTITION OF customers FOR VALUES FROM (0) TO (1);
 
 CREATE TABLE customers_unavail PARTITION OF customers FOR VALUES FROM (1) TO (2);
-
-
-CREATE TABLE user_roles (
-	id SERIAL NOT NULL,
-
-	name VARCHAR(20) DEFAULT 'customer',
-
-	numer INTEGER DEFAULT 1
-);
-
-
-CREATE TABLE user_labels (
-	id SERIAL NOT NULL,
-
-	name VARCHAR(20),
-
-	bytes VARCHAR(7) default '0000000'
-);
 
 
 CREATE TABLE orders (
