@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.sustech.ooad;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -12,17 +12,9 @@ import javax.sql.DataSource;
 @Slf4j
 class HotelApplicationTests {
 
-	@Autowired
-	JdbcTemplate jdbcTemplate;
-
-	@Autowired
-	DataSource dataSource;
-
 	@Test
 	void contextLoads() {
-		Long data = jdbcTemplate.queryForObject("select count(*) from clip_path", Long.class);
-		log.info("记录{}", data);
-		log.info("数据源类型{}", dataSource.getClass());
+		System.out.println("114");
 	}
 
 }
