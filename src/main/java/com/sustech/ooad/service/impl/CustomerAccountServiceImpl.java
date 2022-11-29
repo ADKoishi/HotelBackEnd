@@ -12,6 +12,7 @@ import com.sustech.ooad.entity.response.SignUpResponse;
 import com.sustech.ooad.mapper.dataMappers.CustomerMapper;
 import com.sustech.ooad.mapper.dataMappers.UserMapper;
 import com.sustech.ooad.service.CustomerAccountService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,18 +34,20 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
 
     @Override
     public void signUp(Map<String, String> signUpInfo, SignUpResponse signUpResponse) {
-        String firstname = "";
-        String lastname = "";
-        String mail = "";
-        String country = "";
-        String password = "";
-        try {
-            firstname = signUpInfo.get("firstname");
-            lastname = signUpInfo.get("lastname");
-            mail = signUpInfo.get("mail");
-            country = signUpInfo.get("country");
-            password = signUpInfo.get("password");
-        }catch (Exception e){
+        String firstname = signUpInfo.get("firstname");
+        String lastname = signUpInfo.get("lastname");
+        String mail = signUpInfo.get("mail");
+        String country = signUpInfo.get("country");
+        String password = signUpInfo.get("password");
+        String birthdayTxt = signUpInfo.get("birthday");
+        if (
+            firstname == null
+            || lastname == null
+            || mail == null
+            || country == null
+            || password == null
+            || birthdayTxt == null
+        ){
             signUpResponse.setCode("-1");
             return;
         }
@@ -58,9 +61,9 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
         }
         try {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date UDate = simpleDateFormat.parse(signUpInfo.get("birthday"));
+            java.util.Date UDate = simpleDateFormat.parse(birthdayTxt);
             birthday = new java.sql.Date(UDate.getTime());
-        } catch (ParseException e) {
+        } catch (Exception e) {
             signUpResponse.setCode("1");
             return;
         }
@@ -83,12 +86,9 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
 
     @Override
     public void resetPassword(Map<String, String> resetPasswdInfo, ForgetPasswordResponse forgetPasswordResponse) {
-        String mail = "";
-        String password = "";
-        try {
-            mail = resetPasswdInfo.get("mail");
-            password = resetPasswdInfo.get("newpassword");
-        }catch (Exception e){
+        String mail = resetPasswdInfo.get("mail");
+        String password = resetPasswdInfo.get("newpassword");
+        if (mail == null || password == null){
             forgetPasswordResponse.setCode("-1");
             forgetPasswordResponse.setMessage("Data format invalid!");
             return;
@@ -106,16 +106,14 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
 
     @Override
     public void signIn(Map<String, String> signInInfo, Map<String, String> signInResponse) {
-        String mail = "";
-        String password = "";
-        try {
-            mail = signInInfo.get("mail");
-            password = sha256Hex(signInInfo.get("password"));
-        }catch (Exception e){
+        String mail = signInInfo.get("mail");
+        String passwordTxt = signInInfo.get("password");
+        if (mail == null || passwordTxt == null){
             signInResponse.put("code", "-1");
             signInResponse.put("msg", "Data format invalid!");
             return;
         }
+        String password = sha256Hex(passwordTxt);
         User user = userMapper.getUserByMail(mail);
         if (user == null || !password.equals(user.getPassword())){
             signInResponse.put("code", "0");
