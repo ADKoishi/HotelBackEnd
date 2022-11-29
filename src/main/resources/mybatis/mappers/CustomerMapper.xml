@@ -7,7 +7,7 @@
         SELECT * FROM customers WHERE mail = #{mail} AND deleted = 0
     </select>
     <insert id="signUpInsert" parameterType="com.sustech.ooad.entity.data.Customer">
-        INSERT INTO customers(user_id, mail, birthday, country)
-        VALUES(#{user_id}, #{mail}, #{birthday}, #{country})
+        INSERT INTO customers(id, mail, birthday, country)
+        VALUES(#{id}, #{mail}, #{birthday}, #{country})
     </insert>
 </mapper>

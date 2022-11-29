@@ -13,7 +13,7 @@
     </update>
     <select id="getUserByMail" resultType="com.sustech.ooad.entity.data.User">
         SELECT * FROM users WHERE id = (
-            SELECT user_id FROM customers WHERE mail = #{mail} AND deleted = 0
+            SELECT id FROM customers WHERE mail = #{mail} AND deleted = 0
         ) AND deleted = 0
     </select>
 </mapper>
