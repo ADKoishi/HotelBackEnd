@@ -25,6 +25,6 @@ spring:
 mybatis-plus:
   config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mappers/*.xml
-  
+
 server:
   port: 8888
