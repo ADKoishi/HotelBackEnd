@@ -1,10 +1,12 @@
 package com.sustech.ooad.entity.data;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 @Data
 public class Hotel {
     Integer id;
+    Integer city_id;
     Double longitude;
     Double latitude;
     String name;

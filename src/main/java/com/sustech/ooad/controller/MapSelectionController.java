@@ -43,7 +43,7 @@ public class MapSelectionController {
             @RequestBody Map<String, String> requestInfo
     ){
         Map<String, Object> hotelMap = new HashMap<>();
-        mapSelectionService.getSortedHotels(cityCode, hotelMap);
+        mapSelectionService.getSortedHotels(cityCode, requestInfo, hotelMap);
         return hotelMap;
     }
 
@@ -52,7 +52,7 @@ public class MapSelectionController {
             @RequestBody Map<String, String> requestInfo
     ){
         Map<String, Object> hotelMap = new HashMap<>();
-        mapSelectionService.getSortedHotels(null, hotelMap);
+        mapSelectionService.getSortedHotels(null, requestInfo, hotelMap);
         return hotelMap;
     }
 }
