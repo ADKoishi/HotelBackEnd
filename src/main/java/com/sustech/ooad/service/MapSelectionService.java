@@ -11,4 +11,6 @@ public interface MapSelectionService {
     List<SimplifiedState> getStatesByCountryCode(String countryCode);
 
     List<SimplifiedCity> getCitiesByStateCode(String CountryCode, String stateCode);
+
+    void getSortedHotels(String cityCode, Map<String, Object> hotelMap);
 }

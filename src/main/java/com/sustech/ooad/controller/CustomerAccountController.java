@@ -25,20 +25,26 @@ public class CustomerAccountController {
     }
 
     @PostMapping("/forgetPsw")
-    public ForgetPasswordResponse resetPasswd(@RequestBody Map<String, String> resetPasswordInfo){
+    public ForgetPasswordResponse resetPasswd(
+            @RequestBody Map<String, String> resetPasswordInfo
+    ){
         ForgetPasswordResponse forgetPasswordResponse = new ForgetPasswordResponse();
         customerAccountService.resetPassword(resetPasswordInfo, forgetPasswordResponse);
         return forgetPasswordResponse;
     }
     @PostMapping("/signin")
-    public Map<String, String> signIn(@RequestBody Map<String, String> signInInfo){
+    public Map<String, String> signIn(
+            @RequestBody Map<String, String> signInInfo
+    ){
         Map<String, String> signInResponse = new HashMap<>();
         customerAccountService.signIn(signInInfo, signInResponse);
         return signInResponse;
     }
 
     @GetMapping("/isTokenOk")
-    public Map<String, String> checkJWT(@RequestParam String JWT){
+    public Map<String, String> checkJWT(
+            @RequestParam String JWT
+    ){
         Map<String, String> JWTCheckResponse = new HashMap<>();
         customerAccountService.checkJWT(JWT, JWTCheckResponse);
         return JWTCheckResponse;

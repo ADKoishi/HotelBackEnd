@@ -1,6 +1,8 @@
 CREATE TABLE hotels(
 	id SERIAL NOT NULL,
 
+	city_id INTEGER NOT NULL,
+
 	longitude FLOAT NOT NULL,
 	
 	latitude FLOAT NOT NULL,

@@ -8,6 +8,8 @@ import com.sustech.ooad.service.MapSelectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @Service
@@ -58,5 +60,21 @@ public class MapSelectionServiceImpl implements MapSelectionService {
         }
 
         return simplifiedCityList;
+    }
+
+    Integer RETURN_CNT = 10;
+    @Override
+    public void getSortedHotels(String cityCode, Map<String, Object> hotelMap) {
+        if (cityCode != null) {
+            Base64.Decoder base64Decoder = Base64.getDecoder();
+            String decodedCityCode = new String(base64Decoder.decode(cityCode.getBytes()), StandardCharsets.UTF_8);
+            String[] decodedResults = decodedCityCode.split("-");
+            String country = decodedResults[0];
+            String province = decodedResults[1];
+            String city = decodedResults[2];
+            System.out.println(country + province + city);
+            return;
+        }
+
     }
 }

@@ -3,10 +3,9 @@ package com.sustech.ooad.controller;
 import com.sustech.ooad.entity.geoInfo.*;
 import com.sustech.ooad.service.MapSelectionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,5 +35,24 @@ public class MapSelectionController {
     ){
         List<SimplifiedCity> cityList = mapSelectionService.getCitiesByStateCode(countryCode, stateCode);
         return cityList;
+    }
+
+    @GetMapping("/resources/map/hotels/{cityCode}")
+    public Map<String, Object> getSortedHotels(
+            @PathVariable(name = "cityCode") String cityCode,
+            @RequestBody Map<String, String> requestInfo
+    ){
+        Map<String, Object> hotelMap = new HashMap<>();
+        mapSelectionService.getSortedHotels(cityCode, hotelMap);
+        return hotelMap;
+    }
+
+    @GetMapping("/resources/map/hotels/")
+    public Map<String, Object> getSortedHotels(
+            @RequestBody Map<String, String> requestInfo
+    ){
+        Map<String, Object> hotelMap = new HashMap<>();
+        mapSelectionService.getSortedHotels(null, hotelMap);
+        return hotelMap;
     }
 }
