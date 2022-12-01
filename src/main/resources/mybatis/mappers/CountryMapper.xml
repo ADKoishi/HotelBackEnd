@@ -6,4 +6,10 @@
     <select id="getAllCountries" resultType="com.sustech.ooad.entity.geoInfo.Country">
         SELECT * FROM countries
     </select>
+    <select id="getCurrencyById" resultType="java.lang.String">
+        SELECT currency FROM countries WHERE id = #{id}
+    </select>
+    <select id="getCurrencySymbolById" resultType="java.lang.String">
+        SELECT currency_symbol FROM countries WHERE id = #{id}
+    </select>
 </mapper>

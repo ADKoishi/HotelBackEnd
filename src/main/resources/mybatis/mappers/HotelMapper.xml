@@ -14,4 +14,12 @@
             ) Q1 ORDER BY dis LIMIT #{RETURN_CNT}
         )
     </select>
+    <select id="getAccessibleRoomCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM rooms WHERE hotel_id = 1 AND accessibility = TRUE
+    </select>
+    <select id="getHotelCountryIdByHotelId" resultType="java.lang.Integer">
+        SELECT country_id FROM cities WHERE id = (
+            SELECT city_id FROM hotels WHERE id = 1
+        )
+    </select>
 </mapper>

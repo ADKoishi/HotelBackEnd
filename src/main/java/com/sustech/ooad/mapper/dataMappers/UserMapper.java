@@ -9,7 +9,7 @@ public interface UserMapper extends BaseMapper<User> {
 
     void signUpInsert(User user);
 
-    void setPasswdByID(Integer id, String password);
+    void setPasswdById(Integer id, String password);
 
     User getUserByMail(String mail);
 }

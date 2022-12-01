@@ -73,10 +73,10 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
         user.setLastname(lastname);
         user.setPassword(sha256Password);
         userMapper.signUpInsert(user);
-        Integer userID = user.getId();
+        Integer userId = user.getId();
 
         customer = new Customer();
-        customer.setId(userID);
+        customer.setId(userId);
         customer.setMail(mail);
         customer.setCountry(country);
         customer.setBirthday(birthday);
@@ -99,7 +99,7 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
             forgetPasswordResponse.setMessage("The account does not exist!");
             return;
         }
-        userMapper.setPasswdByID(customer.getId(), sha256Hex(password));
+        userMapper.setPasswdById(customer.getId(), sha256Hex(password));
         forgetPasswordResponse.setCode("200");
         forgetPasswordResponse.setMessage("The new password is set successfully!");
     }

@@ -66,13 +66,17 @@ public class MapSelectionServiceImpl implements MapSelectionService {
     }
 
     @Autowired
-    HotelMapper hotelResponseper;
+    HotelMapper hotelMapper;
     @Autowired
     RestTemplate restTemplate;
     Integer RETURN_CNT = 10;
     String APP_KEY = "ZJFBZ-IMOLU-R4MVV-23C4K-TPK6J-24F4U";
     @Override
-    public void getSortedHotels(String cityCode, Map<String, String>requestInfo, Map<String, Object> hotelResponse) {
+    public void getSortedHotels(
+            String cityCode,
+            Map<String, String>requestInfo,
+            Map<String, Object> hotelResponse
+    ){
         List<Hotel> hotelList = null;
         if (cityCode == null){
             String longitude = requestInfo.get("longitude");
@@ -98,7 +102,7 @@ public class MapSelectionServiceImpl implements MapSelectionService {
                 floatLongitude = Double.parseDouble(longitude);
                 floatLatitude = Double.parseDouble(latitude);
             }
-            hotelList = hotelResponseper.getHotelByCoordinate(floatLongitude, floatLatitude, RETURN_CNT);
+            hotelList = hotelMapper.getHotelByCoordinate(floatLongitude, floatLatitude, RETURN_CNT);
         }
         else {
             String sortStrategy = requestInfo.get("sort");
@@ -108,7 +112,7 @@ public class MapSelectionServiceImpl implements MapSelectionService {
                 return;
             }
             Base64.Decoder base64Decoder = Base64.getDecoder();
-            Integer cityID = Integer.parseInt(
+            Integer cityId = Integer.parseInt(
                     new String(base64Decoder.decode(cityCode.getBytes()), StandardCharsets.UTF_8)
             );
         }
@@ -123,7 +127,28 @@ public class MapSelectionServiceImpl implements MapSelectionService {
             responseObject = new HashMap<>();
             responseObject.put("name", hotel.getName());
             responseObject.put("id", String.valueOf(hotel.getId()));
-
+            //startingPrice
+            //avaliableRates
+            //accessible
+            responseObject.put(
+                    "accessible",
+                    String.valueOf(hotelMapper.getAccessibleRoomCount(hotel.getId()) > 0)
+            );
+            //points
+            //amenities
+            responseObject.put("longitude", String.valueOf(hotel.getLongitude()));
+            responseObject.put("latitude", String.valueOf(hotel.getLatitude()));
+            //link
+            //cover
+            //gallery
+            //favorited
+            responseObject.put("description", hotel.getDescription());
+            responseObject.put("location", hotel.getAddress());
+            Integer countryId = hotelMapper.getHotelCountryIdByHotelId(hotel.getId());
+            String currency = countryMapper.getCurrencyById(countryId);
+            String currencySymbol = countryMapper.getCurrencySymbolById(countryId);
+            responseObject.put("prefix", currencySymbol);
+            responseObject.put("currency", currency);
             hotelResponse.put(String.valueOf(i), responseObject);
         }
     }

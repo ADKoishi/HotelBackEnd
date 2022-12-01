@@ -6,7 +6,7 @@
     <insert id="signUpInsert" parameterType="com.sustech.ooad.entity.data.User" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO users(firstname, lastname, password) VALUES(#{firstname}, #{lastname}, #{password});
     </insert>
-    <update id="setPasswdByID">
+    <update id="setPasswdById">
         UPDATE users
         SET password = #{password}
         WHERE id = #{id}
