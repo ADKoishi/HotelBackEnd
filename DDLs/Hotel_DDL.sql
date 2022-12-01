@@ -15,6 +15,8 @@ CREATE TABLE hotels(
 	
 	address VARCHAR(800) NOT NULL,
 
+    description  VARCHAR,
+
 	scale INTEGER NOT NULL,
 
 	priority INTEGER NOT NULL,

@@ -13,6 +13,7 @@ public class Hotel {
     String contactCode;
     String contact;
     String address;
+    String description;
     Integer scale;
     Integer priority;
     Boolean picture;
