@@ -1,5 +1,6 @@
 package com.sustech.ooad.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.sustech.ooad.entity.data.Hotel;
 import com.sustech.ooad.entity.geoInfo.*;
 import com.sustech.ooad.mapper.dataMappers.HotelMapper;
@@ -9,6 +10,7 @@ import com.sustech.ooad.mapper.geoInfoMappers.StateMapper;
 import com.sustech.ooad.service.MapSelectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
@@ -64,10 +66,13 @@ public class MapSelectionServiceImpl implements MapSelectionService {
     }
 
     @Autowired
-    HotelMapper hotelMapper;
+    HotelMapper hotelResponseper;
+    @Autowired
+    RestTemplate restTemplate;
     Integer RETURN_CNT = 10;
+    String APP_KEY = "ZJFBZ-IMOLU-R4MVV-23C4K-TPK6J-24F4U";
     @Override
-    public void getSortedHotels(String cityCode, Map<String, String>requestInfo, Map<String, Object> hotelMap) {
+    public void getSortedHotels(String cityCode, Map<String, String>requestInfo, Map<String, Object> hotelResponse) {
         List<Hotel> hotelList = null;
         if (cityCode == null){
             String longitude = requestInfo.get("longitude");
@@ -76,25 +81,30 @@ public class MapSelectionServiceImpl implements MapSelectionService {
             String userIP = requestInfo.get("user_ip");
             if((longitude == null || latitude == null)){
                 if(userIP != null){
-                    floatLongitude = 1.;
-                    floatLatitude = 1.;
+                    JSONObject forObject = restTemplate.getForObject(
+                            "https://apis.map.qq.com/ws/location/v1/ip?ip="+userIP+"&key="+APP_KEY,
+                            JSONObject.class
+                    );
+                    JSONObject location = forObject.getJSONObject("result").getJSONObject("location");
+                    floatLongitude = Double.valueOf(location.get("lng").toString());
+                    floatLatitude = Double.valueOf(location.get("lat").toString());
                 }
                 else {
-                    hotelMap.put("code", "-1");
-                    hotelMap.put("msg", "Key name 'user_ip' not found.");
+                    hotelResponse.put("code", "-1");
+                    hotelResponse.put("msg", "Key name 'user_ip' not found.");
                     return;
                 }
             }else{
                 floatLongitude = Double.parseDouble(longitude);
                 floatLatitude = Double.parseDouble(latitude);
             }
-            hotelList = hotelMapper.getHotelByCoordinate(floatLongitude, floatLatitude, RETURN_CNT);
+            hotelList = hotelResponseper.getHotelByCoordinate(floatLongitude, floatLatitude, RETURN_CNT);
         }
         else {
             String sortStrategy = requestInfo.get("sort");
             if (sortStrategy == null){
-                hotelMap.put("code", "-1");
-                hotelMap.put("msg", "Key name 'sort' not found.");
+                hotelResponse.put("code", "-1");
+                hotelResponse.put("msg", "Key name 'sort' not found.");
                 return;
             }
             Base64.Decoder base64Decoder = Base64.getDecoder();
@@ -103,11 +113,18 @@ public class MapSelectionServiceImpl implements MapSelectionService {
             );
         }
         if (hotelList == null){
-            hotelMap.put("code", "-1");
-            hotelMap.put("msg", "Query failed, returned 'hotelList' is null.");
+            hotelResponse.put("code", "-1");
+            hotelResponse.put("msg", "Query failed, returned 'hotelList' is null.");
             return;
         }
-        for (int i = 0 ; i < hotelList.size(); i ++)
-            hotelMap.put(String.valueOf(i), hotelList.get(i));
+        Map<String, String> responseObject = null;
+        for (int i = 0 ; i < hotelList.size(); i ++) {
+            Hotel hotel = hotelList.get(i);
+            responseObject = new HashMap<>();
+            responseObject.put("name", hotel.getName());
+            responseObject.put("id", String.valueOf(hotel.getId()));
+
+            hotelResponse.put(String.valueOf(i), responseObject);
+        }
     }
 }
