@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -81,7 +80,7 @@ public class MapSelectionServiceImpl implements MapSelectionService {
         if (cityCode == null){
             String longitude = requestInfo.get("longitude");
             String latitude = requestInfo.get("latitude");
-            Double floatLongitude = 0., floatLatitude = 0.;
+            double floatLongitude, floatLatitude;
             String userIP = requestInfo.get("user_ip");
             if((longitude == null || latitude == null)){
                 if(userIP != null){
@@ -89,9 +88,14 @@ public class MapSelectionServiceImpl implements MapSelectionService {
                             "https://apis.map.qq.com/ws/location/v1/ip?ip="+userIP+"&key="+APP_KEY,
                             JSONObject.class
                     );
+                    if (forObject == null){
+                        hotelResponse.put("code", "-1");
+                        hotelResponse.put("msg", "Fetch from 'apis.map.qq.com' failed");
+                        return;
+                    }
                     JSONObject location = forObject.getJSONObject("result").getJSONObject("location");
-                    floatLongitude = Double.valueOf(location.get("lng").toString());
-                    floatLatitude = Double.valueOf(location.get("lat").toString());
+                    floatLongitude = Double.parseDouble(location.get("lng").toString());
+                    floatLatitude = Double.parseDouble(location.get("lat").toString());
                 }
                 else {
                     hotelResponse.put("code", "-1");
@@ -102,7 +106,7 @@ public class MapSelectionServiceImpl implements MapSelectionService {
                 floatLongitude = Double.parseDouble(longitude);
                 floatLatitude = Double.parseDouble(latitude);
             }
-            hotelList = hotelMapper.getHotelByCoordinate(floatLongitude, floatLatitude, RETURN_CNT);
+            hotelList = hotelMapper.getHotelsByCoordinate(floatLongitude, floatLatitude, RETURN_CNT);
         }
         else {
             String sortStrategy = requestInfo.get("sort");
@@ -111,17 +115,34 @@ public class MapSelectionServiceImpl implements MapSelectionService {
                 hotelResponse.put("msg", "Key name 'sort' not found.");
                 return;
             }
+            int SortId = 0;
+            try{
+                SortId = Integer.parseInt(sortStrategy);
+            }catch (Exception e){
+                hotelResponse.put("code", "-1");
+                hotelResponse.put("msg", "Failed to parse 'sort': " + sortStrategy + " to integer.");
+                return;
+            }
             Base64.Decoder base64Decoder = Base64.getDecoder();
             Integer cityId = Integer.parseInt(
                     new String(base64Decoder.decode(cityCode.getBytes()), StandardCharsets.UTF_8)
             );
+            switch (SortId){
+                case 0:
+                    hotelList = hotelMapper.getHotelsByCityIdS0(cityId);
+                    break;
+                default:
+                    hotelList = hotelMapper.getHotelsByCityIdS0(cityId);
+                    break;
+            }
+
         }
         if (hotelList == null){
             hotelResponse.put("code", "-1");
             hotelResponse.put("msg", "Query failed, returned 'hotelList' is null.");
             return;
         }
-        Map<String, String> responseObject = null;
+        Map<String, String> responseObject;
         for (int i = 0 ; i < hotelList.size(); i ++) {
             Hotel hotel = hotelList.get(i);
             responseObject = new HashMap<>();

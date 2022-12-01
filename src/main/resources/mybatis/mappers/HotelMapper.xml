@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sustech.ooad.mapper.dataMappers.HotelMapper">
 
-    <select id="getHotelByCoordinate" resultType="com.sustech.ooad.entity.data.Hotel">
+    <select id="getHotelsByCoordinate" resultType="com.sustech.ooad.entity.data.Hotel">
         SELECT * FROM hotels WHERE id IN (
             SELECT id FROM (
                 SELECT
@@ -20,6 +20,24 @@
     <select id="getHotelCountryIdByHotelId" resultType="java.lang.Integer">
         SELECT country_id FROM cities WHERE id = (
             SELECT city_id FROM hotels WHERE id = 1
+        )
+    </select>
+    <select id="getHotelsByCityIdS0" resultType="com.sustech.ooad.entity.data.Hotel">
+        SELECT * FROM hotels where id IN (
+            WITH AVAIID AS (SELECT id from hotels where city_id = #{cityId})
+            SELECT Q1.hotel_id FROM(
+                SELECT rooms.hotel_id, MIN(price) cheapest_price FROM rooms
+                    JOIN categories ON rooms.category = categories.id
+                WHERE rooms.hotel_id IN (select * from AVAIID)
+                GROUP BY rooms.hotel_id
+            ) Q1
+            JOIN (
+                SELECT hotel_id, AVG(stars) avg_stars FROM orders
+                    JOIN reviews ON orders.order_number = reviews.order_number
+                WHERE hotel_id IN (select * from AVAIID)
+                GROUP BY hotel_id
+            ) Q2 on Q1.hotel_id = Q2.hotel_id
+            ORDER BY avg_stars DESC, cheapest_price ASC
         )
     </select>
 </mapper>

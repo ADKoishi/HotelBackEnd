@@ -59,7 +59,7 @@ CREATE TABLE rooms(
 	
 	hotel_id INTEGER NOT NULL,
 
-	name INTEGER NOT NULL,
+	name VARCHAR NOT NULL,
 
 	accessibility BOOLEAN DEFAULT FALSE,
 
