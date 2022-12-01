@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Category {
     Integer id;
-    Integer hotel_id;
+    Integer hotelId;
     String name;
     Integer price;
     Integer points;

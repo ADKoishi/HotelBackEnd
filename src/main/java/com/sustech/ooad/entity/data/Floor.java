@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class Floor {
-    Integer hotel_id;
+    Integer hotelId;
     Integer number;
-    Boolean floor_plan;
+    Boolean floorPlan;
     Boolean deleted;
 }

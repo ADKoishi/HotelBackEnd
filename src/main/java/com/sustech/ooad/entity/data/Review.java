@@ -7,14 +7,14 @@ import java.sql.Date;
 @Data
 public class Review {
     Integer id;
-    Integer user_id;
-    String order_number;
+    Integer userId;
+    String orderNumber;
     String language;
     String title;
     Integer type;
     Integer stars;
-    Date post_date;
-    Date edit_date;
+    Date postDate;
+    Date editDate;
     String description;
     Boolean picture;
     Boolean videos;

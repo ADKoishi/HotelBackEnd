@@ -6,11 +6,11 @@ import lombok.Data;
 @Data
 public class Hotel {
     Integer id;
-    Integer city_id;
+    Integer cityId;
     Double longitude;
     Double latitude;
     String name;
-    String contact_code;
+    String contactCode;
     String contact;
     String address;
     Integer scale;

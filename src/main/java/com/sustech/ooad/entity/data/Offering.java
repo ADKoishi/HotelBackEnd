@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Offering {
-    Integer offer_id;
-    String offer_type;
-    Integer offer_for;
+    Integer offerId;
+    String offerType;
+    Integer offerFor;
 }

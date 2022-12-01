@@ -5,12 +5,12 @@ import lombok.Data;
 @Data
 public class Room {
     Integer id;
-    Integer floor_id;
-    Integer hotel_id;
+    Integer floorId;
+    Integer hotelId;
     Integer name;
     Boolean accessibility;
-    Integer max_people;
-    Integer max_children;
+    Integer maxPeople;
+    Integer maxChildren;
     Integer category;
     Integer deleted;
 }

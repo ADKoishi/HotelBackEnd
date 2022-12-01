@@ -12,7 +12,7 @@ public class User {
     String labels;
     String firstname;
     String lastname;
-    Timestamp enrolled_date;
+    Timestamp enrolledDate;
     String language;
     String password;
     Boolean avatar;

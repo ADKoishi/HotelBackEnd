@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class ClipPath {
-    Integer clip_path_id;
-    Integer room_id;
-    Double x_coordinates;
-    Double y_coordinates;
+    Integer clipPathId;
+    Integer roomId;
+    Double xCoordinates;
+    Double yCoordinates;
 }

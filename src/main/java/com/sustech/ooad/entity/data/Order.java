@@ -7,12 +7,12 @@ import java.sql.Date;
 @Data
 public class Order {
     String order_number;
-    Integer user_id;
+    Integer userId;
     Double pice;
-    Integer hotel_id;
-    Integer room_id;
-    Date start_date;
-    Date end_date;
+    Integer hotelId;
+    Integer roomId;
+    Date startDate;
+    Date endDate;
     Integer people;
     Integer children;
     Integer points;

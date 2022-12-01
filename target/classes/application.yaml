@@ -23,6 +23,8 @@ spring:
       aop-patterns: com.sustech.ooad.*
 
 mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
   config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mappers/*.xml
 

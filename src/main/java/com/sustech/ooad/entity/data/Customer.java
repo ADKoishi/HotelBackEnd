@@ -8,16 +8,16 @@ import java.sql.Date;
 @Data
 public class Customer {
     Integer id;
-    String name_prefix;
-    String name_suffix;
-    String phone_number;
-    String phone_head;
+    String namePrefix;
+    String nameSuffix;
+    String phoneNumber;
+    String phoneHead;
     String mail;
     Date birthday;
     String gender;
     Integer points;
     Integer accumulated;
     String country;
-    Integer last_visited;
+    Integer lastVisited;
     Boolean deleted;
 }
