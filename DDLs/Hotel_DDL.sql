@@ -22,7 +22,9 @@ CREATE TABLE hotels(
 	priority INTEGER NOT NULL,
 
 	picture BOOLEAN DEFAULT FALSE,
-	
+
+    points_avail BOOLEAN DEFAULT FALSE NOT NULL,
+
 	deleted INTEGER DEFAULT 0 NOT NULL
 		CONSTRAINT check_hotel_deleted
 			CHECK(deleted IN (0,1))

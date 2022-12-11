@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6150968-fb3c-42e7-a7e6-5961e740814f" name="变更" comment="updated">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/Utils/SVGUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/RoomSelectionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testResources/pnr.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DDLs/Hotel_DDL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DDLs/Hotel_DDL.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/HotelMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/HotelMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/MapSelectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/MapSelectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Hotel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/MapSelectionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/MapSelectionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/CustomerAccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/CustomerAccountServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/MapSelectionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/MapSelectionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mappers/HotelMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mappers/HotelMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/sustech/ooad/HotelApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/sustech/ooad/HotelApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,18 +53,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JpbToolWindowState">
-    <option name="myId2FirstActivated">
-      <map>
-        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
-        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
-      </map>
-    </option>
-    <option name="myId2Visible">
-      <map>
-        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
-        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
-      </map>
-    </option>
+    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -89,7 +85,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/25749/Desktop/OOAD/final_project/hotel/src&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/25749/Desktop/OOAD/final_project/hotel/testResources&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;e919c49d5f0cd737285367810a3394d0&quot;
   },
@@ -101,6 +97,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\25749\Desktop\OOAD\final_project\hotel\testResources" />
       <recent name="C:\Users\25749\Desktop\OOAD\final_project\hotel\src\main\resources\mybatis\mappers" />
       <recent name="C:\Users\25749\Desktop\OOAD\final_project\hotel" />
     </key>
@@ -124,7 +121,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.HotelApplication">
+  <component name="RunManager" selected="JUnit.HotelApplicationTests.contextLoads (1)">
     <configuration name="HotelApplicationTests.contextLoads (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hotel" />
       <extension name="coverage">
@@ -172,8 +169,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.HotelApplication" />
         <item itemvalue="JUnit.HotelApplicationTests.contextLoads (1)" />
+        <item itemvalue="Spring Boot.HotelApplication" />
         <item itemvalue="JUnit.HotelApplicationTests.contextLoads" />
       </list>
     </recent_temporary>
@@ -200,7 +197,10 @@
       <workItem from="1669891432095" duration="4480000" />
       <workItem from="1669895923721" duration="196000" />
       <workItem from="1669896355554" duration="6729000" />
-      <workItem from="1669907756172" duration="2797000" />
+      <workItem from="1669907756172" duration="3184000" />
+      <workItem from="1670146198581" duration="18000" />
+      <workItem from="1670499802668" duration="5311000" />
+      <workItem from="1670765413557" duration="454000" />
     </task>
     <task id="LOCAL-00001" summary="updated">
       <created>1669284360932</created>
@@ -447,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669907784425</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="updated">
+      <created>1669910998472</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1669910998472</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

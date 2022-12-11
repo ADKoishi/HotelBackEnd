@@ -72,10 +72,10 @@ public class MapSelectionServiceImpl implements MapSelectionService {
     String APP_KEY = "ZJFBZ-IMOLU-R4MVV-23C4K-TPK6J-24F4U";
     @Override
     public void getSortedHotels(
-            String cityCode,
             Map<String, String>requestInfo,
             Map<String, Object> hotelResponse
     ){
+        String cityCode = requestInfo.get("city_code");
         List<Hotel> hotelList = null;
         if (cityCode == null){
             String longitude = requestInfo.get("longitude");
@@ -150,12 +150,8 @@ public class MapSelectionServiceImpl implements MapSelectionService {
             responseObject.put("id", String.valueOf(hotel.getId()));
             //startingPrice
             //avaliableRates
-            //accessible
-            responseObject.put(
-                    "accessible",
-                    String.valueOf(hotelMapper.getAccessibleRoomCount(hotel.getId()) > 0)
-            );
-            //points
+            responseObject.put("accessible", String.valueOf(hotelMapper.getAccessibleRoomCount(hotel.getId()) > 0));
+            responseObject.put("points", String.valueOf(hotel.getPointsAvail()));
             //amenities
             responseObject.put("longitude", String.valueOf(hotel.getLongitude()));
             responseObject.put("latitude", String.valueOf(hotel.getLatitude()));

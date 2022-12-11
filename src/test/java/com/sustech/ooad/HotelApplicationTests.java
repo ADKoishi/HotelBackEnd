@@ -1,5 +1,6 @@
 package com.sustech.ooad;
 
+import com.sustech.ooad.Utils.SVGUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,8 @@ class HotelApplicationTests {
 
 	@Test
 	void contextLoads() {
-		System.out.println("114");
+
+		SVGUtils.parseSvgFile("C:\\Users\\25749\\Desktop\\OOAD\\final_project\\hotel\\testResources\\pnr.svg");
 	}
 
 }

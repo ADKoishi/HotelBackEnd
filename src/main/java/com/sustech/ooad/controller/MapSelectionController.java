@@ -37,22 +37,12 @@ public class MapSelectionController {
         return cityList;
     }
 
-    @GetMapping("/resources/map/hotels/{cityCode}")
-    public Map<String, Object> getSortedHotels(
-            @PathVariable(name = "cityCode") String cityCode,
-            @RequestBody Map<String, String> requestInfo
-    ){
-        Map<String, Object> hotelMap = new HashMap<>();
-        mapSelectionService.getSortedHotels(cityCode, requestInfo, hotelMap);
-        return hotelMap;
-    }
-
     @GetMapping("/resources/map/hotels/")
     public Map<String, Object> getSortedHotels(
             @RequestBody Map<String, String> requestInfo
     ){
         Map<String, Object> hotelMap = new HashMap<>();
-        mapSelectionService.getSortedHotels(null, requestInfo, hotelMap);
+        mapSelectionService.getSortedHotels(requestInfo, hotelMap);
         return hotelMap;
     }
 }

@@ -18,4 +18,5 @@ public class Hotel {
     Integer priority;
     Boolean picture;
     Boolean deleted;
+    Boolean pointsAvail;
 }

@@ -79,6 +79,12 @@
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 			<version>3.0.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>batik-svg-dom</artifactId>
+			<version>1.10</version>
+		</dependency>
 	</dependencies>
 
 	<build>
