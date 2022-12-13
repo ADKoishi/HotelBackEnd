@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6150968-fb3c-42e7-a7e6-5961e740814f" name="变更" comment="updated">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/Utils/SVGUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/RoomSelectionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testResources/pnr.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DDLs/Hotel_DDL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DDLs/Hotel_DDL.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/MapSelectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/MapSelectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Hotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Hotel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/MapSelectionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/MapSelectionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/CustomerAccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/CustomerAccountServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/MapSelectionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/MapSelectionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/sustech/ooad/HotelApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/sustech/ooad/HotelApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +111,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.HotelApplicationTests.contextLoads (1)">
+  <component name="RunManager" selected="Spring Boot.HotelApplication">
     <configuration name="HotelApplicationTests.contextLoads (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hotel" />
       <extension name="coverage">
@@ -169,8 +159,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.HotelApplicationTests.contextLoads (1)" />
         <item itemvalue="Spring Boot.HotelApplication" />
+        <item itemvalue="JUnit.HotelApplicationTests.contextLoads (1)" />
         <item itemvalue="JUnit.HotelApplicationTests.contextLoads" />
       </list>
     </recent_temporary>
@@ -200,7 +190,7 @@
       <workItem from="1669907756172" duration="3184000" />
       <workItem from="1670146198581" duration="18000" />
       <workItem from="1670499802668" duration="5311000" />
-      <workItem from="1670765413557" duration="454000" />
+      <workItem from="1670765413557" duration="3076000" />
     </task>
     <task id="LOCAL-00001" summary="updated">
       <created>1669284360932</created>
@@ -454,7 +444,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669910998472</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="updated">
+      <created>1670765882603</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1670765882604</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -126,9 +126,9 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
         signInResponse.put("code", "1");
         signInResponse.put("JWT", JWTToken);
         String userRole = switch (user.getRole()) {
-            case 0 -> "customer";
-            case 1 -> "administrator";
-            case 2 -> "employee";
+            case 1 -> "customer";
+            case 2 -> "administrator";
+            case 3 -> "employee";
             default -> null;
         };
         signInResponse.put("role", userRole);
