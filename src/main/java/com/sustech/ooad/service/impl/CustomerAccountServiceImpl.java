@@ -71,6 +71,7 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
         User user = new User();
         user.setFirstname(firstname);
         user.setLastname(lastname);
+        user.setMail(mail);
         user.setPassword(sha256Password);
         userMapper.signUpInsert(user);
         Integer userId = user.getId();

@@ -12,6 +12,7 @@ public class User {
     String labels;
     String firstname;
     String lastname;
+    String mail;
     Timestamp enrolledDate;
     String language;
     String password;

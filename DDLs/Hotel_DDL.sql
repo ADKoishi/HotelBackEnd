@@ -127,6 +127,8 @@ CREATE TABLE users (
 
 	labels VARCHAR(6) default '000000' NOT NULL,
 
+    mail VARCHAR(100) NOT NULL,
+
 	firstname VARCHAR(40),
 
 	lastname VARCHAR(40),

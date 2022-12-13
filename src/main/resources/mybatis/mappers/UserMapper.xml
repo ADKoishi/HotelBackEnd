@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sustech.ooad.mapper.dataMappers.UserMapper">
     <insert id="signUpInsert" parameterType="com.sustech.ooad.entity.data.User" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO users(firstname, lastname, password) VALUES(#{firstname}, #{lastname}, #{password});
+        INSERT INTO users(firstname, lastname, mail, password) VALUES(#{firstname}, #{lastname}, #{mail}, #{password});
     </insert>
     <update id="setPasswdById">
         UPDATE users
@@ -12,8 +12,6 @@
         WHERE id = #{id}
     </update>
     <select id="getUserByMail" resultType="com.sustech.ooad.entity.data.User">
-        SELECT * FROM users WHERE id = (
-            SELECT id FROM customers WHERE mail = #{mail} AND deleted = 0
-        ) AND deleted = 0
+        SELECT * FROM users WHERE mail = #{mail}
     </select>
 </mapper>
