@@ -8,9 +8,5 @@ public class Room {
     Integer floorId;
     Integer hotelId;
     Integer name;
-    Boolean accessibility;
-    Integer maxPeople;
-    Integer maxChildren;
     Integer category;
-    Integer deleted;
 }

@@ -1,6 +1,8 @@
 CREATE TABLE hotels(
 	id SERIAL NOT NULL,
 
+	address VARCHAR(800) NOT NULL,
+
 	city_id INTEGER NOT NULL,
 
 	longitude FLOAT NOT NULL,
@@ -12,10 +14,10 @@ CREATE TABLE hotels(
 	contact_code VARCHAR(5) NOT NULL,
 
 	contact VARCHAR(20) NOT NULL,
-	
-	address VARCHAR(800) NOT NULL,
 
-    description  VARCHAR,
+    description VARCHAR,
+
+	default_tower INTEGER NOT NULL,
 
 	scale INTEGER NOT NULL,
 
@@ -35,23 +37,27 @@ CREATE TABLE hotels_avail PARTITION OF hotels FOR VALUES FROM (0) TO (1);
 
 CREATE TABLE hotels_unavail PARTITION OF hotels FOR VALUES FROM (1) TO (2);
 
+CREATE TABLE towers(
+	id INTEGER NOT NULL,
+
+	hotel_id INTEGER NOT NULL,
+
+	tower VARCHAR NOT NULL DEFAULT 'Main',
+
+	default_floor INTEGER NOT NULL DEFAULT 2
+
+);
 
 CREATE TABLE floors(
+	id INTEGER NOT NULL,
+	
+	tower_id INTEGER NOT NULL,
+
 	hotel_id INTEGER NOT NULL,
 			
-	number INTEGER NOT NULL,
-	
-	floor_plan BOOLEAN DEFAULT FALSE,
-		
-	deleted INTEGER DEFAULT 0 NOT NULL
-		CONSTRAINT check_floor_deleted
-			CHECK(deleted IN (0,1))
-	
-) PARTITION BY RANGE (deleted);
+	number INTEGER NOT NULL
 
-CREATE TABLE floors_avail PARTITION OF floors FOR VALUES FROM (0) TO (1);
-
-CREATE TABLE floors_unavail PARTITION OF floors FOR VALUES FROM (1) TO (2);
+);
 
 
 CREATE TABLE rooms(
@@ -63,29 +69,23 @@ CREATE TABLE rooms(
 
 	name VARCHAR NOT NULL,
 
-	accessibility BOOLEAN DEFAULT FALSE,
-
-	max_people INTEGER NOT NULL,
-
-	max_children INTEGER NOT NULL,
-
-	category INTEGER NOT NULL,
-	
-	deleted INTEGER DEFAULT 0 NOT NULL
-		CONSTRAINT check_room_deleted
-			CHECK(deleted IN (0,1))
+	category INTEGER NOT NULL
 			
-) PARTITION BY RANGE (deleted);
-
-CREATE TABLE rooms_avail PARTITION OF rooms FOR VALUES FROM (0) TO (1);
-
-CREATE TABLE rooms_unavail PARTITION OF rooms FOR VALUES FROM (1) TO (2);
+);
 
 
 CREATE TABLE categories(
 	id SERIAL NOT NULL,
 			
 	hotel_id INTEGER NOT NULL,
+
+	max_people INTEGER NOT NULL,
+
+	max_children INTEGER NOT NULL,
+
+	avaliable_rates VARCHAR NOT NULL default '000',
+
+	accessible BOOLEAN DEFAULT FALSE,
 
 	name VARCHAR(40) NOT NULL,
 	
@@ -97,15 +97,11 @@ CREATE TABLE categories(
 
 	picture BOOLEAN DEFAULT FALSE,
 
-	deleted INTEGER DEFAULT 0 NOT NULL
-		CONSTRAINT check_category_deleted
-			CHECK(deleted IN (0,1))
+	prefix VARCHAR NOT NULL,
+
+	currency VARCHAR NOT NULL
 			
-) PARTITION BY RANGE (deleted);
-
-CREATE TABLE categories_avail PARTITION OF categories FOR VALUES FROM (0) TO (1);
-
-CREATE TABLE categories_unavail PARTITION OF categories FOR VALUES FROM (1) TO (2);
+);
 
 
 CREATE TABLE clip_path(
@@ -229,12 +225,7 @@ CREATE TABLE reviews (
 	language VARCHAR(5) NOT NULL DEFAULT 'en-us',
 		
 	title VARCHAR(400) NOT NULL,
-		
-	/*
-		Review type:
-		0 - normal review,
-		1 - user guid,
-	*/
+	
 	type INTEGER NOT NULL DEFAULT 0,
 	
 	stars INTEGER NOT NULL,

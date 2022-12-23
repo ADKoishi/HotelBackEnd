@@ -7,6 +7,7 @@ import lombok.Data;
 public class Hotel {
     Integer id;
     Integer cityId;
+    Integer defaultTower;
     Double longitude;
     Double latitude;
     String name;
@@ -18,5 +19,4 @@ public class Hotel {
     Integer priority;
     Boolean picture;
     Boolean deleted;
-    Boolean pointsAvail;
 }
