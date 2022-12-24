@@ -11,6 +11,7 @@ public class Hotel {
     Double longitude;
     Double latitude;
     String name;
+    String link;
     String contactCode;
     String contact;
     String address;
@@ -18,5 +19,6 @@ public class Hotel {
     Integer scale;
     Integer priority;
     Boolean picture;
+    Boolean pointsAvail;
     Boolean deleted;
 }

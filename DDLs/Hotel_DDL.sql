@@ -11,6 +11,8 @@ CREATE TABLE hotels(
 	
 	name VARCHAR(400) NOT NULL,
 
+	link VARCHAR DEFAULT NULL,
+
 	contact_code VARCHAR(5) NOT NULL,
 
 	contact VARCHAR(20) NOT NULL,

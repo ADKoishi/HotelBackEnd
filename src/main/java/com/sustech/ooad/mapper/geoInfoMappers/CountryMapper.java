@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface CountryMapper extends BaseMapper<Country> {
     List<Country> getAllCountries();
-
     String getCurrencyById(Integer id);
     String getCurrencySymbolById(Integer id);
 }

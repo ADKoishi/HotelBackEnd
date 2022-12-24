@@ -153,11 +153,10 @@ public class MapSelectionServiceImpl implements MapSelectionService {
             responseObject.put("accessible", String.valueOf(hotelMapper.getAccessibleRoomCount(hotel.getId()) > 0));
             responseObject.put("points", String.valueOf(hotel.getPointsAvail()));
             //amenities
+            //gallerySize
             responseObject.put("longitude", String.valueOf(hotel.getLongitude()));
             responseObject.put("latitude", String.valueOf(hotel.getLatitude()));
-            //link
-            //cover
-            //gallery
+            responseObject.put("link", hotel.getLink());
             //favorited
             responseObject.put("description", hotel.getDescription());
             responseObject.put("location", hotel.getAddress());
