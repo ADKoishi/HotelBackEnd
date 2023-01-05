@@ -8,7 +8,7 @@ import java.sql.Date;
 public class Order {
     String order_number;
     Integer userId;
-    Double pice;
+    Double price;
     Integer hotelId;
     Integer roomId;
     Date startDate;

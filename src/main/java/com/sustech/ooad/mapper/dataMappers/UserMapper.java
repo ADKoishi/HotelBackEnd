@@ -12,4 +12,10 @@ public interface UserMapper extends BaseMapper<User> {
     void setPasswdById(Integer id, String password);
 
     User getUserByMail(String mail);
+
+    String getFavoritesById(Integer userId);
+
+    User getUserById(Integer userId);
+
+    void setFavoritesById(Integer userId, String favorites);
 }

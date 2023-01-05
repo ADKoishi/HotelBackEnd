@@ -37,12 +37,34 @@ public class MapSelectionController {
         return cityList;
     }
 
-    @GetMapping("/resources/map/hotels/")
+    @PostMapping("/resources/map/hotels/")
     public Map<String, Object> getSortedHotels(
             @RequestBody Map<String, String> requestInfo
     ){
         Map<String, Object> hotelMap = new HashMap<>();
         mapSelectionService.getSortedHotels(requestInfo, hotelMap);
         return hotelMap;
+    }
+
+    @GetMapping("/static/cover/hotels/{hotelCode}")
+    public String getHotelCover(
+            @PathVariable(name = "hotelCode") String hotelCode
+    ){
+        return mapSelectionService.getHotelCover(hotelCode);
+    }
+
+    @GetMapping("/static/gallery/hotels/{hotelCode}/{idx}")
+    public String getHotelGalleryPicture(
+            @PathVariable(name = "hotelCode") String hotelCode,
+            @PathVariable(name = "idx") String idx
+    ){
+        return mapSelectionService.getHotelGalleryPicture(hotelCode, idx);
+    }
+
+    @PostMapping("/user/favourite")
+    public void setFavourite(
+            @RequestBody Map<String, String> requestInfo
+    ){
+        mapSelectionService.userFavorite(requestInfo);
     }
 }

@@ -1,12 +1,22 @@
 package com.sustech.ooad.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.auth0.jwt.exceptions.AlgorithmMismatchException;
+import com.auth0.jwt.exceptions.SignatureVerificationException;
+import com.auth0.jwt.exceptions.TokenExpiredException;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.sustech.ooad.Utils.JWTUtils;
+import com.sustech.ooad.Utils.PathUtils;
 import com.sustech.ooad.entity.data.Hotel;
+import com.sustech.ooad.entity.data.User;
 import com.sustech.ooad.entity.geoInfo.*;
 import com.sustech.ooad.mapper.dataMappers.HotelMapper;
+import com.sustech.ooad.mapper.dataMappers.UserMapper;
 import com.sustech.ooad.mapper.geoInfoMappers.CityMapper;
 import com.sustech.ooad.mapper.geoInfoMappers.CountryMapper;
 import com.sustech.ooad.mapper.geoInfoMappers.StateMapper;
+import com.sustech.ooad.property.StaticProp;
+import com.sustech.ooad.service.CustomerAccountService;
 import com.sustech.ooad.service.MapSelectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +27,25 @@ import java.util.*;
 
 @Service
 public class MapSelectionServiceImpl implements MapSelectionService {
-
+    private static final double STANDARD_RATE = 1, STUDENT_RATE = 0.9, MILITARY_RATE = 0.85;
     @Autowired
     CountryMapper countryMapper;
+    @Autowired
+    StateMapper stateMapper;
+    @Autowired
+    CityMapper cityMapper;
+    @Autowired
+    HotelMapper hotelMapper;
+    @Autowired
+    RestTemplate restTemplate;
+    @Autowired
+    UserMapper userMapper;
+    Integer RETURN_CNT = 10;
+    String APP_KEY = "ZJFBZ-IMOLU-R4MVV-23C4K-TPK6J-24F4U";
+    @Autowired
+    StaticProp staticProp;
+    @Autowired
+    CustomerAccountService customerAccountService;
     @Override
     public List<SimplifiedCountry> getAllCountries() {
         List<Country> countryList = countryMapper.getAllCountries();
@@ -33,8 +59,6 @@ public class MapSelectionServiceImpl implements MapSelectionService {
         return simplifiedCountryList;
     }
 
-    @Autowired
-    StateMapper stateMapper;
     @Override
     public List<SimplifiedState> getStatesByCountryCode(String countryCode) {
         List<State> stateList = stateMapper.getStatesByCountryCode(countryCode);
@@ -49,8 +73,6 @@ public class MapSelectionServiceImpl implements MapSelectionService {
         return simplifiedStateList;
     }
 
-    @Autowired
-    CityMapper cityMapper;
     @Override
     public List<SimplifiedCity> getCitiesByStateCode(String countryCode ,String stateCode) {
         List<City> cityList = cityMapper.getCitiesByStateCode(countryCode, stateCode);
@@ -64,17 +86,24 @@ public class MapSelectionServiceImpl implements MapSelectionService {
         return simplifiedCityList;
     }
 
-    @Autowired
-    HotelMapper hotelMapper;
-    @Autowired
-    RestTemplate restTemplate;
-    Integer RETURN_CNT = 10;
-    String APP_KEY = "ZJFBZ-IMOLU-R4MVV-23C4K-TPK6J-24F4U";
     @Override
     public void getSortedHotels(
-            Map<String, String>requestInfo,
+            Map<String, String> requestInfo,
             Map<String, Object> hotelResponse
     ){
+        String jwt = requestInfo.get("jwt");
+        DecodedJWT decodedJWT;
+        boolean userLogin = false;
+        Integer userId = null;
+        if(jwt != null)
+            try {
+                decodedJWT = JWTUtils.decode(jwt);
+                userId = Integer.parseInt(
+                        decodedJWT.getClaim("user_id").toString().replaceAll("\"","")
+                );
+                userLogin = true;
+            } catch (Exception ignored){}
+
         String cityCode = requestInfo.get("city_code");
         List<Hotel> hotelList = null;
         if (cityCode == null){
@@ -142,22 +171,47 @@ public class MapSelectionServiceImpl implements MapSelectionService {
             hotelResponse.put("msg", "Query failed, returned 'hotelList' is null.");
             return;
         }
-        Map<String, String> responseObject;
+        Map<String, Object> responseObject;
+        List<Object> responseList = new ArrayList<>();
         for (int i = 0 ; i < hotelList.size(); i ++) {
             Hotel hotel = hotelList.get(i);
             responseObject = new HashMap<>();
             responseObject.put("name", hotel.getName());
             responseObject.put("id", String.valueOf(hotel.getId()));
-            //startingPrice
-            //avaliableRates
-            responseObject.put("accessible", String.valueOf(hotelMapper.getAccessibleRoomCount(hotel.getId()) > 0));
-            responseObject.put("points", String.valueOf(hotel.getPointsAvail()));
-            //amenities
-            //gallerySize
-            responseObject.put("longitude", String.valueOf(hotel.getLongitude()));
-            responseObject.put("latitude", String.valueOf(hotel.getLatitude()));
+            List<Double> prices = new ArrayList<>();
+            Double standardStartPrice = hotelMapper.getCheapestAvail(hotel.getId(), "^1..$");
+            prices.add(standardStartPrice == null ? -1. : standardStartPrice * STANDARD_RATE);
+            Double studentStartPrice = hotelMapper.getCheapestAvail(hotel.getId(), "^.1.$");
+            prices.add(studentStartPrice == null ? -1. : studentStartPrice * STUDENT_RATE);
+            Double militaryStartPrice = hotelMapper.getCheapestAvail(hotel.getId(), "^.1.$");
+            prices.add(militaryStartPrice == null ? -1. : militaryStartPrice * MILITARY_RATE);
+            responseObject.put("prices", prices);
+            String standardRateAvail = hotelMapper.getRateAvail(hotel.getId(), "^1..$") ? "1" : "0";
+            String studentRateAvail = hotelMapper.getRateAvail(hotel.getId(), "^.1.$") ? "1" : "0";
+            String militaryRateAvail = hotelMapper.getRateAvail(hotel.getId(), "^..1$") ? "1" : "0";
+            responseObject.put("available_rates",
+                    Integer.parseInt(standardRateAvail+studentRateAvail+militaryRateAvail, 2));
+            responseObject.put("accessible", hotelMapper.hasAccessibleRoom(hotel.getId()));
+            responseObject.put("points", hotel.getPointsAvail());
+            responseObject.put("amenities", Integer.parseInt(hotel.getAmenities(), 2));
+            String hotelGalleryPath = "/gallery/hotels/" + hotel.getId();
+            responseObject.put("gallerySize", PathUtils.directoryCount(
+                    staticProp.getStaticDirectory() + hotelGalleryPath)
+            );
+            responseObject.put("longitude", hotel.getLongitude());
+            responseObject.put("latitude", hotel.getLatitude());
             responseObject.put("link", hotel.getLink());
-            //favorited
+            if(userLogin) {
+                String userFavorites = userMapper.getFavoritesById(userId);
+                if(userFavorites.length() > 0){
+                    String[] userFavoritesArr = userFavorites.split(",");
+                    for (String s : userFavoritesArr)
+                        if(hotel.getId() == Integer.parseInt(s)){
+                            responseObject.put("favorited", true);
+                            break;
+                        }
+                } else responseObject.put("favorited", false);
+            } else responseObject.put("favorited", false);
             responseObject.put("description", hotel.getDescription());
             responseObject.put("location", hotel.getAddress());
             Integer countryId = hotelMapper.getHotelCountryIdByHotelId(hotel.getId());
@@ -165,7 +219,65 @@ public class MapSelectionServiceImpl implements MapSelectionService {
             String currencySymbol = countryMapper.getCurrencySymbolById(countryId);
             responseObject.put("prefix", currencySymbol);
             responseObject.put("currency", currency);
-            hotelResponse.put(String.valueOf(i), responseObject);
+            responseList.add(responseObject);
         }
+        hotelResponse.put("code", 0);
+        hotelResponse.put("hotels", responseList);
+    }
+
+    @Override
+    public String getHotelCover(String hotelCode) {
+        String hotelCoverPath = "/cover/hotels/" + hotelCode;
+        String altPath = "/cover/hotels/alt.png";
+        String posix = PathUtils.getPicturePosix(staticProp.getStaticDirectory() + hotelCoverPath);
+        if (posix == null)
+            return "<img src=\"http://" + staticProp.getStaticUrl() + altPath + "\">";
+        else return "<img src=\"http://" + staticProp.getStaticUrl() + hotelCoverPath + posix + "\">";
+    }
+
+    @Override
+    public String getHotelGalleryPicture(String hotelCode, String idx) {
+        String hotelGalleryPicturePath = "/gallery/hotels/" + hotelCode + "/" + idx;
+        String altPath = "/gallery/hotels/alt.png";
+        String posix = PathUtils.getPicturePosix(staticProp.getStaticDirectory() + hotelGalleryPicturePath);
+        if (posix == null)
+            return "<img src=\"http://" + staticProp.getStaticUrl() + altPath + "\">";
+        else return "<img src=\"http://" + staticProp.getStaticUrl() + hotelGalleryPicturePath + posix + "\">";
+    }
+
+    @Override
+    public void userFavorite(Map<String, String> requestInfo) {
+        Map<String, String> JWTCheckResponse = new HashMap<>();
+        String JWTToken = requestInfo.get("JWT");
+        String hotelId = requestInfo.get("hotel");
+        String favourite = requestInfo.get("favourite");
+        if (JWTToken == null || hotelId == null || favourite == null)
+            return;
+        customerAccountService.checkJWT(JWTToken, JWTCheckResponse);
+        if (!Objects.equals(JWTCheckResponse.get("code"), "1"))
+            return;
+        if (hotelMapper.getHotelById(Integer.valueOf(hotelId)) == null)
+            return;
+        String userId = String.valueOf(JWTUtils.decode(JWTToken).getClaim("user_id"));
+        userId = userId.replaceAll("\"", "");
+        User user = userMapper.getUserById(Integer.valueOf(userId));
+        String userFavorites = user.getFavorites();
+        if (Boolean.parseBoolean(favourite)){
+            String[] userFavoritesArr = userFavorites.split(",");
+            boolean alreadyFavorite = false;
+            for (String userFavorite : userFavoritesArr)
+                alreadyFavorite = userFavorite.equals(hotelId) || alreadyFavorite;
+            if (alreadyFavorite)
+                return;
+            if (userFavorites.length() != 0)
+                userFavorites += ",";
+            userFavorites += hotelId;
+        }
+        else {
+            userFavorites = userFavorites.replaceAll("^" + hotelId + ",", "");
+            userFavorites = userFavorites.replaceAll("," + hotelId + ",", ",");
+            userFavorites = userFavorites.replaceAll("," + hotelId + "$", "");
+        }
+        userMapper.setFavoritesById(Integer.valueOf(userId), userFavorites);
     }
 }

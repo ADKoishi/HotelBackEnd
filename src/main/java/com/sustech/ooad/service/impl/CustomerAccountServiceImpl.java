@@ -19,6 +19,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static org.apache.commons.codec.digest.DigestUtils.sha256Hex;
 
@@ -120,7 +121,7 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
             return;
         }
         Map<String, String> JWTPayload = new HashMap<>();
-        JWTPayload.put("id", String.valueOf(user.getId()));
+        JWTPayload.put("user_id", String.valueOf(user.getId()));
         String JWTToken = JWTUtils.getToken(JWTPayload);
         signInResponse.put("code", "1");
         signInResponse.put("JWT", JWTToken);
@@ -151,6 +152,29 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
         }catch (Exception e){
             JWTCheckResponse.put("code", "0");
             JWTCheckResponse.put("msg", "Token invalid!");
+        }
+    }
+
+
+    @Override
+    public void getUsernameByJWT(Map<String, String> requestInfo, Map<String, String> getUsernameResponse) {
+        Map<String, String> JWTCheckResponse = new HashMap<>();
+        String JWTToken = requestInfo.get("JWT");
+        if (JWTToken == null){
+            getUsernameResponse.put("code", "-1");
+            getUsernameResponse.put("username", "");
+            return;
+        }
+        checkJWT(JWTToken, JWTCheckResponse);
+        if (!Objects.equals(JWTCheckResponse.get("code"), "1")) {
+            getUsernameResponse.put("code", "-1");
+            getUsernameResponse.put("username", "");
+        } else {
+            String userId = String.valueOf(JWTUtils.decode(JWTToken).getClaim("user_id"));
+            userId = userId.replaceAll("\"", "");
+            User user = userMapper.getUserById(Integer.valueOf(userId));
+            getUsernameResponse.put("code", "1");
+            getUsernameResponse.put("username", user.getFirstname() + " " + user.getLastname());
         }
     }
 }

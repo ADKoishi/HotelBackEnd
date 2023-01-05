@@ -3,6 +3,8 @@ CREATE TABLE hotels(
 
 	address VARCHAR(800) NOT NULL,
 
+    amenities VARCHAR(4) NOT NULL DEFAULT '0000',
+
 	city_id INTEGER NOT NULL,
 
 	longitude FLOAT NOT NULL,
@@ -46,18 +48,9 @@ CREATE TABLE towers(
 
 	tower VARCHAR NOT NULL DEFAULT 'Main',
 
-	default_floor INTEGER NOT NULL DEFAULT 2
+	lowest_floor INTEGER NOT NULL DEFAULT 2,
 
-);
-
-CREATE TABLE floors(
-	id INTEGER NOT NULL,
-	
-	tower_id INTEGER NOT NULL,
-
-	hotel_id INTEGER NOT NULL,
-			
-	number INTEGER NOT NULL
+	highest_floor INTEGER NOT NULL
 
 );
 
@@ -65,9 +58,11 @@ CREATE TABLE floors(
 CREATE TABLE rooms(
 	id SERIAL NOT NULL,
 			
-	floor_id INTEGER NOT NULL,
+	floor INTEGER NOT NULL,
 	
 	hotel_id INTEGER NOT NULL,
+
+    tower_id INTEGER NOT NULL,
 
 	name VARCHAR NOT NULL,
 
@@ -85,7 +80,9 @@ CREATE TABLE categories(
 
 	max_children INTEGER NOT NULL,
 
-	avaliable_rates VARCHAR NOT NULL default '000',
+	available_rates VARCHAR NOT NULL default '000',
+
+    amenities VARCHAR(4) NOT NULL default '0000',
 
 	accessible BOOLEAN DEFAULT FALSE,
 
@@ -138,6 +135,8 @@ CREATE TABLE users (
 	password VARCHAR(64) NOT NULL,
 	
 	avatar BOOLEAN DEFAULT FALSE,
+
+	favorites VARCHAR NOT NULL,
 	
 	deleted INTEGER DEFAULT 0 NOT NULL
 		CONSTRAINT check_user_deleted
@@ -190,7 +189,7 @@ CREATE TABLE orders (
 	
 	user_id INTEGER NOT NULL,
 	
-	pice FLOAT NOT NULL,
+	price FLOAT NOT NULL,
 	
 	hotel_id INTEGER NOT NULL,
 
@@ -256,30 +255,12 @@ CREATE TABLE reviews_unavail PARTITION OF reviews FOR VALUES FROM (1) TO (2);
 
 
 CREATE TABLE offers (
-	id SERIAL NOT NULL,
+	code VARCHAR NOT NULL,
 
-	type INTEGER NOT NULL,
+	ratio FLOAT NOT NULL
 
-	value INTEGER NOT NULL,
-			
-	picture BOOLEAN DEFAULT FALSE	
 );
 
-CREATE TABLE offer_types (
-	id SERIAL NOT NULL,
-
-	name VARCHAR(20) DEFAULT 'percentage',
-
-	description VARCHAR NOT NULL
-);
-
-CREATE TABLE offerings (
-	offer_id INTEGER NOT NULL,
-
-	offer_type VARCHAR(20) NOT NULL,
-
-	offer_for INTEGER NOT NULL
-);
 
 CREATE TABLE notices (
 	id SERIAL NOT NULL,

@@ -4,8 +4,6 @@ import lombok.Data;
 
 @Data
 public class Offer {
-    Integer id;
-    Integer type;
-    Integer value;
-    Boolean picture;
+    String code;
+    Double ratio;
 }

@@ -14,6 +14,7 @@ public class Category {
     Integer price;
     Integer points;
     String description;
+    String amenities;
     Boolean picture;
     String prefix;
     String currency;

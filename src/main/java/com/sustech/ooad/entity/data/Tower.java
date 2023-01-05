@@ -7,5 +7,6 @@ public class Tower {
     Integer id;
     Integer hotel_id;
     String tower;
-    Integer defaultFloor;
+    Integer lowestFloor;
+    Integer highestFloor;
 }

@@ -17,5 +17,6 @@ public class User {
     String language;
     String password;
     Boolean avatar;
+    String favorites;
     Integer deleted;
 }

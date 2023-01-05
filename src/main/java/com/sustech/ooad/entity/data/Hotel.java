@@ -15,6 +15,7 @@ public class Hotel {
     String contactCode;
     String contact;
     String address;
+    String amenities;
     String description;
     Integer scale;
     Integer priority;

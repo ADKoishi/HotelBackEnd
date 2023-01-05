@@ -50,4 +50,13 @@ public class CustomerAccountController {
         return JWTCheckResponse;
     }
 
+    @GetMapping("/getUserName")
+    public Map<String, String> getUsernameByJWT(
+            @RequestBody Map<String, String> requestBody
+    ){
+        Map<String, String> getUsernameResponse = new HashMap<>();
+        customerAccountService.getUsernameByJWT(requestBody, getUsernameResponse);
+        return getUsernameResponse;
+    }
+
 }

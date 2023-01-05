@@ -11,7 +11,18 @@
         SET password = #{password}
         WHERE id = #{id}
     </update>
+    <update id="setFavoritesById">
+        UPDATE users
+        SET favorites = #{favorites}
+        WHERE id = #{userId}
+    </update>
     <select id="getUserByMail" resultType="com.sustech.ooad.entity.data.User">
         SELECT * FROM users WHERE mail = #{mail}
+    </select>
+    <select id="getFavoritesById" resultType="java.lang.String">
+        SELECT favorites FROM users WHERE id = #{userId}
+    </select>
+    <select id="getUserById" resultType="com.sustech.ooad.entity.data.User">
+        SELECT * FROM users WHERE id = #{userId}
     </select>
 </mapper>

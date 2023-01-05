@@ -9,10 +9,16 @@ import java.util.List;
 public interface HotelMapper extends BaseMapper<Hotel> {
     List<Hotel> getHotelsByCoordinate(Double longitude, Double latitude, Integer RETURN_CNT);
 
-    Integer getAccessibleRoomCount(Integer hotelId);
+    Boolean hasAccessibleRoom(Integer hotelId);
 
     Integer getHotelCountryIdByHotelId(Integer hotelId);
 
     List<Hotel> getHotelsByCityIdS0(Integer cityId);
+
+    Boolean getRateAvail(Integer hotelId, String rateRegex);
+
+    Double getCheapestAvail(Integer hotelId, String rateRegex);
+
+    Hotel getHotelById(Integer hotelId);
 
 }

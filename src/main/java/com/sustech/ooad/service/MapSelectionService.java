@@ -16,4 +16,10 @@ public interface MapSelectionService {
             Map<String, String> requestInfo,
             Map<String, Object> hotelResponse
     );
+
+    String getHotelCover(String hotelCode);
+
+    String getHotelGalleryPicture(String hotelCode, String idx);
+
+    void userFavorite(Map<String, String> requestInfo);
 }
