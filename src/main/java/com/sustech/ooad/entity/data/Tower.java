@@ -6,7 +6,7 @@ import lombok.Data;
 public class Tower {
     Integer id;
     Integer hotel_id;
-    String tower;
+    String name;
     Integer lowestFloor;
     Integer highestFloor;
 }

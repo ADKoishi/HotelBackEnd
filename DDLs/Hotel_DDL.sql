@@ -46,7 +46,7 @@ CREATE TABLE towers(
 
 	hotel_id INTEGER NOT NULL,
 
-	tower VARCHAR NOT NULL DEFAULT 'Main',
+	name VARCHAR NOT NULL DEFAULT 'Main',
 
 	lowest_floor INTEGER NOT NULL DEFAULT 2,
 

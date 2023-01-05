@@ -1,9 +1,6 @@
 package com.sustech.ooad.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.auth0.jwt.exceptions.AlgorithmMismatchException;
-import com.auth0.jwt.exceptions.SignatureVerificationException;
-import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.sustech.ooad.Utils.JWTUtils;
 import com.sustech.ooad.Utils.PathUtils;
@@ -118,7 +115,7 @@ public class MapSelectionServiceImpl implements MapSelectionService {
                             JSONObject.class
                     );
                     if (forObject == null){
-                        hotelResponse.put("code", "-1");
+                        hotelResponse.put("code", -1);
                         hotelResponse.put("msg", "Fetch from 'apis.map.qq.com' failed");
                         return;
                     }
@@ -127,7 +124,7 @@ public class MapSelectionServiceImpl implements MapSelectionService {
                     floatLatitude = Double.parseDouble(location.get("lat").toString());
                 }
                 else {
-                    hotelResponse.put("code", "-1");
+                    hotelResponse.put("code", -1);
                     hotelResponse.put("msg", "Key name 'user_ip' not found.");
                     return;
                 }
@@ -140,7 +137,7 @@ public class MapSelectionServiceImpl implements MapSelectionService {
         else {
             String sortStrategy = requestInfo.get("sort");
             if (sortStrategy == null){
-                hotelResponse.put("code", "-1");
+                hotelResponse.put("code", -1);
                 hotelResponse.put("msg", "Key name 'sort' not found.");
                 return;
             }
@@ -148,7 +145,7 @@ public class MapSelectionServiceImpl implements MapSelectionService {
             try{
                 SortId = Integer.parseInt(sortStrategy);
             }catch (Exception e){
-                hotelResponse.put("code", "-1");
+                hotelResponse.put("code", -1);
                 hotelResponse.put("msg", "Failed to parse 'sort': " + sortStrategy + " to integer.");
                 return;
             }
@@ -167,7 +164,7 @@ public class MapSelectionServiceImpl implements MapSelectionService {
 
         }
         if (hotelList == null){
-            hotelResponse.put("code", "-1");
+            hotelResponse.put("code", -1);
             hotelResponse.put("msg", "Query failed, returned 'hotelList' is null.");
             return;
         }
