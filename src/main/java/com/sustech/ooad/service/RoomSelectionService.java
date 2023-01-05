@@ -11,6 +11,11 @@ public interface RoomSelectionService {
             String hotelCode,
             Map<String, Object> HotelInfoResponse
     );
+    void getFloorRooms(
+            String hotelCode,
+            Map<String, String> requestInfo,
+            Map<String, Object> FloorRoomsResponse
+    );
     String getRoomCover(String categoryCode);
     String getRoomGalleryPicture(String categoryCode, String idx);
 }

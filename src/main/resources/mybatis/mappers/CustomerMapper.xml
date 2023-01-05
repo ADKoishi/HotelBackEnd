@@ -3,8 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sustech.ooad.mapper.dataMappers.CustomerMapper">
+    <update id="setPointsById">
+        UPDATE customers
+        SET points = #{points}
+        WHERE id = #{id}
+    </update>
     <select id="getCustomerByMail" resultType="com.sustech.ooad.entity.data.Customer">
         SELECT * FROM customers WHERE mail = #{mail} AND deleted = 0
+    </select>
+    <select id="getCustomerById" resultType="com.sustech.ooad.entity.data.Customer">
+        SELECT * FROM customers WHERE id = #{id}
     </select>
     <insert id="signUpInsert" parameterType="com.sustech.ooad.entity.data.Customer">
         INSERT INTO customers(id, mail, birthday, country)

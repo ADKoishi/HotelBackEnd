@@ -12,6 +12,7 @@ import com.sustech.ooad.mapper.dataMappers.UserMapper;
 import com.sustech.ooad.mapper.geoInfoMappers.CityMapper;
 import com.sustech.ooad.mapper.geoInfoMappers.CountryMapper;
 import com.sustech.ooad.mapper.geoInfoMappers.StateMapper;
+import com.sustech.ooad.property.PricingProp;
 import com.sustech.ooad.property.StaticProp;
 import com.sustech.ooad.service.CustomerAccountService;
 import com.sustech.ooad.service.MapSelectionService;
@@ -24,7 +25,7 @@ import java.util.*;
 
 @Service
 public class MapSelectionServiceImpl implements MapSelectionService {
-    private static final double STANDARD_RATE = 1, STUDENT_RATE = 0.9, MILITARY_RATE = 0.85;
+
     @Autowired
     CountryMapper countryMapper;
     @Autowired
@@ -177,11 +178,11 @@ public class MapSelectionServiceImpl implements MapSelectionService {
             responseObject.put("id", String.valueOf(hotel.getId()));
             List<Double> prices = new ArrayList<>();
             Double standardStartPrice = hotelMapper.getCheapestAvail(hotel.getId(), "^1..$");
-            prices.add(standardStartPrice == null ? -1. : standardStartPrice * STANDARD_RATE);
+            prices.add(standardStartPrice == null ? -1. : standardStartPrice * PricingProp.STANDARD_RATE);
             Double studentStartPrice = hotelMapper.getCheapestAvail(hotel.getId(), "^.1.$");
-            prices.add(studentStartPrice == null ? -1. : studentStartPrice * STUDENT_RATE);
+            prices.add(studentStartPrice == null ? -1. : studentStartPrice * PricingProp.STUDENT_RATE);
             Double militaryStartPrice = hotelMapper.getCheapestAvail(hotel.getId(), "^.1.$");
-            prices.add(militaryStartPrice == null ? -1. : militaryStartPrice * MILITARY_RATE);
+            prices.add(militaryStartPrice == null ? -1. : militaryStartPrice * PricingProp.MILITARY_RATE);
             responseObject.put("prices", prices);
             String standardRateAvail = hotelMapper.getRateAvail(hotel.getId(), "^1..$") ? "1" : "0";
             String studentRateAvail = hotelMapper.getRateAvail(hotel.getId(), "^.1.$") ? "1" : "0";
@@ -192,7 +193,7 @@ public class MapSelectionServiceImpl implements MapSelectionService {
             responseObject.put("points", hotel.getPointsAvail());
             responseObject.put("amenities", Integer.parseInt(hotel.getAmenities(), 2));
             String hotelGalleryPath = "/gallery/hotels/" + hotel.getId();
-            responseObject.put("gallerySize", PathUtils.directoryCount(
+            responseObject.put("gallery_size", PathUtils.directoryCount(
                     staticProp.getStaticDirectory() + hotelGalleryPath)
             );
             responseObject.put("longitude", hotel.getLongitude());

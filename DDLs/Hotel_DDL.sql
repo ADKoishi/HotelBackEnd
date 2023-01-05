@@ -185,7 +185,7 @@ CREATE TABLE customers_unavail PARTITION OF customers FOR VALUES FROM (1) TO (2)
 
 
 CREATE TABLE orders (
-	order_number VARCHAR NOT NULL,
+	id SERIAL NOT NULL,
 	
 	user_id INTEGER NOT NULL,
 	

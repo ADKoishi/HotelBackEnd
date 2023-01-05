@@ -1,0 +1,123 @@
+package com.sustech.ooad.service.impl;
+
+import com.sustech.ooad.entity.data.Category;
+import com.sustech.ooad.entity.data.Customer;
+import com.sustech.ooad.entity.data.Offer;
+import com.sustech.ooad.entity.data.Order;
+import com.sustech.ooad.mapper.dataMappers.CategoryMapper;
+import com.sustech.ooad.mapper.dataMappers.CustomerMapper;
+import com.sustech.ooad.mapper.dataMappers.OfferMapper;
+import com.sustech.ooad.mapper.dataMappers.OrderMapper;
+import com.sustech.ooad.property.PricingProp;
+import com.sustech.ooad.service.TransactionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Map;
+
+@Service
+public class TransactionServiceImpl implements TransactionService {
+    @Autowired
+    OrderMapper orderMapper;
+    @Autowired
+    CategoryMapper categoryMapper;
+    @Autowired
+    OfferMapper offerMapper;
+    @Autowired
+    CustomerMapper customerMapper;
+    @Override
+    public void orderPurchase(Map<String, String> requestInfo, Map<String, Object> orderPurchaseResult) {
+        String userId = requestInfo.get("customer");
+        String start = requestInfo.get("start");
+        String end = requestInfo.get("end");
+        String hotelId = requestInfo.get("hotel");
+        String roomId = requestInfo.get("room");
+        String categoryId = requestInfo.get("category");
+        String rate = requestInfo.get("rate");
+        String offer = requestInfo.get("offer");
+        String people = requestInfo.get("people");
+        String children = requestInfo.get("children");
+        if(userId == null || start == null || end == null || hotelId == null || roomId == null
+                || categoryId == null || rate == null || offer == null || people == null || children == null){
+            orderPurchaseResult.put("code", -1);
+            orderPurchaseResult.put("message", "exists field in request is null");
+            return;
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date sqlStartDate, sqlEndDate;
+        try {
+            sqlStartDate = new Date(dateFormat.parse(start).getTime());
+            sqlEndDate = new Date(dateFormat.parse(end).getTime());
+        } catch (ParseException e) {
+            orderPurchaseResult.put("code", -1);
+            orderPurchaseResult.put("message", "date format invalid");
+            return;
+        }
+        boolean dateValid = orderMapper.getOrderConflictedCntByDateAndRoomId(
+                sqlStartDate, sqlEndDate, Integer.valueOf(roomId)) == 0;
+        if (!dateValid){
+            orderPurchaseResult.put("code", -1);
+            orderPurchaseResult.put("message", "date conflicts with existing order");
+            return;
+        }
+        int intRate = Integer.parseInt(rate);
+        double purchasePrice = Double.POSITIVE_INFINITY;
+        Category category = categoryMapper.getCategoryById(Integer.valueOf(categoryId));
+        Offer roomOffer = null;
+        if (intRate == 0)
+            purchasePrice = category.getPrice() * PricingProp.STANDARD_RATE;
+        else if (intRate == 1)
+            purchasePrice = category.getPrice() * PricingProp.STUDENT_RATE;
+        else if (intRate == 2)
+            purchasePrice = category.getPrice() * PricingProp.MILITARY_RATE;
+        else if (intRate == 3){
+             roomOffer = offerMapper.getOfferByCode(offer);
+            if (roomOffer == null){
+                orderPurchaseResult.put("code", -1);
+                orderPurchaseResult.put("message", "offer code not exists");
+                return;
+            }
+            purchasePrice = category.getPrice() * roomOffer.getRatio();
+        }
+        Customer customer = customerMapper.getCustomerById(Integer.valueOf(userId));
+        if(customer.getPoints()*PricingProp.POINTS_RATIO < purchasePrice){
+            orderPurchaseResult.put("code", -1);
+            orderPurchaseResult.put("message", "insufficient points");
+            return;
+        }
+        if(Integer.parseInt(children) > category.getMaxChildren()){
+            orderPurchaseResult.put("code", -1);
+            orderPurchaseResult.put("message", "children number exceeded");
+            return;
+        }
+        if(Integer.parseInt(people) > category.getMaxPeople()){
+            orderPurchaseResult.put("code", -1);
+            orderPurchaseResult.put("message", "people number exceeded");
+            return;
+        }
+
+        orderMapper.placeOrder(new Order(
+                0,
+                Integer.parseInt(userId),
+                purchasePrice,
+                Integer.parseInt(hotelId),
+                Integer.parseInt(roomId),
+                sqlStartDate, sqlEndDate,
+                Integer.parseInt(people),
+                Integer.parseInt(children),
+                0,
+                false
+        ));
+        assert roomOffer != null;
+        customerMapper.setPointsById(
+                Integer.valueOf(userId),
+                Math.max(0, (int)(customer.getPoints() - purchasePrice / roomOffer.getRatio()))
+        );
+        orderPurchaseResult.put("code", 0);
+        orderPurchaseResult.put("message", "success");
+
+    }
+}

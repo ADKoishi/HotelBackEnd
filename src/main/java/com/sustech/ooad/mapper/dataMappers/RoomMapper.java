@@ -1,4 +1,10 @@
 package com.sustech.ooad.mapper.dataMappers;
 
-public interface RoomMapper {
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.sustech.ooad.entity.data.Room;
+
+import java.util.List;
+
+public interface RoomMapper extends BaseMapper<Room> {
+    List<Room> getRoomByTowerAndFloor(Integer towerId, Integer floorNumber);
 }

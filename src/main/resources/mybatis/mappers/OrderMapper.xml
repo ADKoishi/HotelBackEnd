@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sustech.ooad.mapper.dataMappers.OrderMapper">
+    <insert id="placeOrder" parameterType="com.sustech.ooad.entity.data.Order">
+        INSERT INTO orders(user_id, price, hotel_id, room_id, start_date, end_date, people, children, points)
+        VALUES(#{userId}, #{price}, #{hotelId}, #{roomId}, #{startDate}, #{endDate}, #{people}, #{children}, #{points})
+    </insert>
+
+    <select id="getOrderConflictedCntByDateAndRoomId" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM orders
+        WHERE (#{startDate} BETWEEN start_date AND end_date)
+        OR (#{endDate} BETWEEN start_date AND end_date)
+        OR (start_date BETWEEN #{startDate} AND #{endDate})
+        OR (end_date BETWEEN #{startDate} AND #{endDate})
+        AND room_id = #{roomId}
+    </select>
+</mapper>

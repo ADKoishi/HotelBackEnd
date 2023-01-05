@@ -1,12 +1,14 @@
 package com.sustech.ooad.entity.data;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.sql.Date;
 
 @Data
+@AllArgsConstructor
 public class Order {
-    String order_number;
+    Integer id;
     Integer userId;
     Double price;
     Integer hotelId;

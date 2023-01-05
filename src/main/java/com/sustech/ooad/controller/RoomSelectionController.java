@@ -23,6 +23,15 @@ public class RoomSelectionController {
         roomSelectionService.getHotelInfo(hotelCode, HotelInfoResponse);
         return HotelInfoResponse;
     }
+    @PostMapping("/resources/select/room/{hotel_code}")
+    public Map<String, Object> getFloorRooms(
+            @PathVariable(name = "hotel_code") String hotelCode,
+            @RequestBody Map<String, String> requestInfo
+    ){
+        Map<String, Object> floorRoomsResponse = new HashMap<>();
+        roomSelectionService.getFloorRooms(hotelCode, requestInfo, floorRoomsResponse);
+        return floorRoomsResponse;
+    }
     @GetMapping("/static/cover/rooms/{categoryCode}")
     public String getHotelCover(
             @PathVariable(name = "categoryCode") String hotelCode

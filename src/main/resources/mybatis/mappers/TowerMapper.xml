@@ -6,4 +6,7 @@
     <select id="getTowersByHotelId" resultType="com.sustech.ooad.entity.data.Tower">
         SELECT * FROM towers WHERE hotel_id = #{hotelId}
     </select>
+    <select id="getTowerById" resultType="com.sustech.ooad.entity.data.Tower">
+        SELECT * FROM towers WHERE id = #{towerId}
+    </select>
 </mapper>

@@ -10,4 +10,6 @@ import java.sql.Date;
 public interface CustomerMapper extends BaseMapper<Customer> {
     Customer getCustomerByMail(String mail);
     void signUpInsert(Customer customer);
+    Customer getCustomerById(Integer id);
+    void setPointsById(Integer id, Integer points);
 }

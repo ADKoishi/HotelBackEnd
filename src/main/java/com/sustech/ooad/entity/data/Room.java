@@ -8,6 +8,6 @@ public class Room {
     Integer floor;
     Integer hotelId;
     Integer towerId;
-    Integer name;
+    String name;
     Integer category;
 }
