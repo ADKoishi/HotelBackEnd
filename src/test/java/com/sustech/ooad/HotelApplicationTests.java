@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.xml.sax.SAXException;
 
 import javax.sql.DataSource;
+import java.io.IOException;
 
 @SpringBootTest
 @Slf4j
@@ -17,9 +19,11 @@ class HotelApplicationTests {
 	StaticProp staticProp;
 	@Test
 	void contextLoads() {
-
-		System.out.println(staticProp.getStaticUrl());
-		System.out.println(staticProp.getStaticDirectory());
+		try {
+			System.out.println(SVGUtils.parseSvgFile("C:\\Users\\25749\\Desktop\\OOAD\\final_project\\statics\\tower\\1\\floor\\2.svg"));
+		} catch (IOException | SAXException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }

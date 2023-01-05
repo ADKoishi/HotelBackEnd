@@ -2,6 +2,7 @@ package com.sustech.ooad.service.impl;
 
 import com.sustech.ooad.Utils.PathUtils;
 import com.sustech.ooad.entity.data.Hotel;
+import com.sustech.ooad.entity.data.Room;
 import com.sustech.ooad.entity.data.Tower;
 import com.sustech.ooad.mapper.dataMappers.HotelMapper;
 import com.sustech.ooad.mapper.dataMappers.TowerMapper;
@@ -41,8 +42,12 @@ public class RoomSelectionImpl implements RoomSelectionService {
         for (Tower tower : towers){
             singleTowerInfo = new HashMap<>();
             singleTowerInfo.put("id", tower.getId());
-            singleTowerInfo.put("name", )
+            singleTowerInfo.put("name", tower.getName());
+            singleTowerInfo.put("lowest_floor", tower.getLowestFloor());
+            singleTowerInfo.put("highest_floor", tower.getHighestFloor());
+            towerArr.add(singleTowerInfo);
         }
+        List<Room> rooms = null;
 
     }
 

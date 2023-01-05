@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6150968-fb3c-42e7-a7e6-5961e740814f" name="变更" comment="updated">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/TowerMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/RoomSelectionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/RoomSelectionImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mappers/TowerMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DDLs/Hotel_DDL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DDLs/Hotel_DDL.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/RoomSelectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/RoomSelectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Tower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Tower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/OfferMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/OfferTyperMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/OfferingMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/MapSelectionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/MapSelectionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/Utils/SVGUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/Utils/SVGUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/RoomSelectionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/RoomSelectionImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/sustech/ooad/HotelApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/sustech/ooad/HotelApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +117,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.HotelApplication">
+  <component name="RunManager" selected="JUnit.HotelApplicationTests">
     <configuration name="HotelApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hotel" />
       <extension name="coverage">
@@ -188,8 +180,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.HotelApplication" />
         <item itemvalue="JUnit.HotelApplicationTests" />
+        <item itemvalue="Spring Boot.HotelApplication" />
         <item itemvalue="JUnit.HotelApplicationTests.contextLoads (1)" />
         <item itemvalue="JUnit.HotelApplicationTests.contextLoads" />
       </list>
@@ -227,7 +219,7 @@
       <workItem from="1672284843360" duration="9312000" />
       <workItem from="1672474065710" duration="1897000" />
       <workItem from="1672475972132" duration="6011000" />
-      <workItem from="1672913318272" duration="17290000" />
+      <workItem from="1672913318272" duration="21019000" />
     </task>
     <task id="LOCAL-00001" summary="updated">
       <created>1669284360932</created>
@@ -523,7 +515,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672928440302</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="updated">
+      <created>1672931240213</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1672931240213</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
