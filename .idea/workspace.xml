@@ -5,24 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6150968-fb3c-42e7-a7e6-5961e740814f" name="变更" comment="updated">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/UserInfoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/ReviewMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/UserInfoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/UserInfoServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mappers/ReviewMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DDLs/Hotel_DDL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/DDLs/Hotel_DDL.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/Utils/SVGUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/Utils/SVGUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/RoomSelectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/RoomSelectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/entity/data/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/OrderMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/RoomMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/mapper/dataMappers/RoomMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/RoomSelectionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/RoomSelectionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/MapSelectionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/MapSelectionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/RoomSelectionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/RoomSelectionImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/TransactionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/impl/TransactionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/config/TestConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/UserInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/controller/UserInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/UserInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sustech/ooad/service/UserInfoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mappers/OrderMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mappers/OrderMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mappers/RoomMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mappers/RoomMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +221,7 @@
       <workItem from="1672284843360" duration="9312000" />
       <workItem from="1672474065710" duration="1897000" />
       <workItem from="1672475972132" duration="6011000" />
-      <workItem from="1672913318272" duration="40554000" />
+      <workItem from="1672913318272" duration="41286000" />
     </task>
     <task id="LOCAL-00001" summary="updated">
       <created>1669284360932</created>
@@ -552,7 +538,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672948701590</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="updated">
+      <created>1672984363224</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1672984363224</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

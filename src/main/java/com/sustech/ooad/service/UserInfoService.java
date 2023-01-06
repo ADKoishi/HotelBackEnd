@@ -9,4 +9,6 @@ public interface UserInfoService {
     void getUserStatisticsByJWT(Map<String, String> requestInfo, Map<String, Object> userStatisticsResponse);
 
     void getUserDataByJWT(Map<String, String> requestInfo, List<Object> userDataResponse);
+
+    void cancelOrder(Map<String, String> requestInfo, List<Object> cancelResponse);
 }

@@ -43,4 +43,13 @@ public class UserInfoController {
         userInfoService.getUserDataByJWT(requestInfo, userDataResponse);
         return userDataResponse;
     }
+
+    @PostMapping("/user/cancel")
+    public List<Object> userCancel(
+            @RequestBody Map<String, String> requestInfo
+    ){
+        List<Object> cancelResponse = new ArrayList<>();
+        userInfoService.cancelOrder(requestInfo, cancelResponse);
+        return cancelResponse;
+    }
 }

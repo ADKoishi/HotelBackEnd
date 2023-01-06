@@ -10,16 +10,17 @@
 
     <select id="getOrderConflictedCntByDateAndRoomId" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM orders
-        WHERE room_id = #{roomId} AND
-        ((#{startDate} BETWEEN start_date AND end_date)
-        OR (#{endDate} BETWEEN start_date AND end_date)
-        OR (start_date BETWEEN #{startDate} AND #{endDate})
-        OR (end_date BETWEEN #{startDate} AND #{endDate}))
+        WHERE deleted = 0 AND room_id = #{roomId} AND (
+            (#{startDate} BETWEEN start_date AND end_date)
+            OR (#{endDate} BETWEEN start_date AND end_date)
+            OR (start_date BETWEEN #{startDate} AND #{endDate})
+            OR (end_date BETWEEN #{startDate} AND #{endDate})
+        )
     </select>
     <select id="getOrderPriceSum" resultType="java.lang.Double">
         SELECT SUM(price) FROM orders WHERE deleted = 0
     </select>
     <select id="getOrderByUserId" resultType="com.sustech.ooad.entity.data.Order">
-        SELECT * FROM orders WHERE user_id = #{userId}
+        SELECT * FROM orders WHERE user_id = #{userId} and deleted = 0
     </select>
 </mapper>
