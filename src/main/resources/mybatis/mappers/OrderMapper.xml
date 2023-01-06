@@ -7,6 +7,14 @@
         INSERT INTO orders(user_id, price, hotel_id, room_id, start_date, end_date, people, children, points)
         VALUES(#{userId}, #{price}, #{hotelId}, #{roomId}, #{startDate}, #{endDate}, #{people}, #{children}, #{points})
     </insert>
+    <insert id="moveOrderToDeletedById">
+        INSERT INTO orders (id, user_id, price, hotel_id, room_id, start_date, end_date, people, children, points, deleted)
+        SELECT id, user_id, price, hotel_id, room_id, start_date, end_date, people, children, points, 1
+        FROM orders WHERE id = #{id} AND deleted = 0
+    </insert>
+    <delete id="deleteAvailOrder">
+        DELETE FROM orders_avail WHERE id = #{id} AND deleted = 0
+    </delete>
 
     <select id="getOrderConflictedCntByDateAndRoomId" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM orders
@@ -21,6 +29,9 @@
         SELECT SUM(price) FROM orders WHERE deleted = 0
     </select>
     <select id="getOrderByUserId" resultType="com.sustech.ooad.entity.data.Order">
-        SELECT * FROM orders WHERE user_id = #{userId} and deleted = 0
+        SELECT * FROM orders WHERE user_id = #{userId} AND deleted = 0
+    </select>
+    <select id="getOrderById" resultType="com.sustech.ooad.entity.data.Order">
+        SELECT * FROM orders WHERE id = #{id} AND deleted = 0
     </select>
 </mapper>

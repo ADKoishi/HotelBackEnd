@@ -3,8 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sustech.ooad.mapper.dataMappers.ReviewMapper">
+    <insert id="insertReview" parameterType="com.sustech.ooad.entity.data.Review" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO reviews(user_id, order_id, language, title, stars, post_date, description)
+        VALUES (#{userId}, #{orderId}, #{language}, #{title}, #{stars}, #{postDate}, #{description})
+    </insert>
 
-    <select id="getReviewByOrderId" resultType="com.sustech.ooad.entity.data.Review">
+    <select id="getReviewByOrderId" resultType="com.sustech.ooad.entity.data.Review" >
         SELECT * FROM reviews WHERE order_id = #{orderId}
+    </select>
+    <select id="getAllRevies" resultType="com.sustech.ooad.entity.data.Review">
+        SELECT * FROM reviews
     </select>
 </mapper>

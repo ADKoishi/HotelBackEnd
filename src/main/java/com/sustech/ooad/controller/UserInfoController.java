@@ -2,6 +2,7 @@ package com.sustech.ooad.controller;
 
 import com.sustech.ooad.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,11 +46,27 @@ public class UserInfoController {
     }
 
     @PostMapping("/user/cancel")
-    public List<Object> userCancel(
+    public Map<String, Object> userCancel(
             @RequestBody Map<String, String> requestInfo
     ){
-        List<Object> cancelResponse = new ArrayList<>();
+        Map<String, Object> cancelResponse = new HashMap<>();
         userInfoService.cancelOrder(requestInfo, cancelResponse);
         return cancelResponse;
+    }
+
+    @PostMapping("/user/upload/review")
+    public Map<String, Object> uploadReview(
+            @RequestBody Map<String, String> requestInfo
+    ){
+        Map<String, Object> uploadResponse = new HashMap<>();
+        userInfoService.uploadReview(requestInfo, uploadResponse);
+        return uploadResponse;
+    }
+
+    @GetMapping("/resources/reviews")
+    public Map<String, Object> getReviews(){
+        Map<String, Object> reviewResponse = new HashMap<>();
+        userInfoService.getReviews(reviewResponse);
+        return reviewResponse;
     }
 }

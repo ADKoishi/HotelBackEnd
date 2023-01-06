@@ -14,4 +14,10 @@ public interface OrderMapper extends BaseMapper<Order> {
     Double getOrderPriceSum();
 
     List<Order> getOrderByUserId(Integer userId);
+
+    Order getOrderById(Integer id);
+
+    void moveOrderToDeletedById(Integer id);
+
+    void deleteAvailOrder(Integer id);
 }

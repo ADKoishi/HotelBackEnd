@@ -1,14 +1,8 @@
 package com.sustech.ooad.service.impl;
 
 import com.sustech.ooad.Utils.JWTUtils;
-import com.sustech.ooad.entity.data.Category;
-import com.sustech.ooad.entity.data.Customer;
-import com.sustech.ooad.entity.data.Offer;
-import com.sustech.ooad.entity.data.Order;
-import com.sustech.ooad.mapper.dataMappers.CategoryMapper;
-import com.sustech.ooad.mapper.dataMappers.CustomerMapper;
-import com.sustech.ooad.mapper.dataMappers.OfferMapper;
-import com.sustech.ooad.mapper.dataMappers.OrderMapper;
+import com.sustech.ooad.entity.data.*;
+import com.sustech.ooad.mapper.dataMappers.*;
 import com.sustech.ooad.property.PricingProp;
 import com.sustech.ooad.service.CustomerAccountService;
 import com.sustech.ooad.service.TransactionService;
@@ -33,6 +27,8 @@ public class TransactionServiceImpl implements TransactionService {
     @Autowired
     CustomerMapper customerMapper;
     @Autowired
+    RoomMapper roomMapper;
+    @Autowired
     CustomerAccountService customerAccountService;
     @Override
     public void orderPurchase(Map<String, String> requestInfo, Map<String, Object> orderPurchaseResult) {
@@ -47,11 +43,12 @@ public class TransactionServiceImpl implements TransactionService {
         String people = requestInfo.get("people");
         String children = requestInfo.get("children");
         if(JWT == null || start == null || end == null || hotelId == null || roomId == null
-                || categoryId == null || rate == null || offer == null || people == null || children == null){
+                || categoryId == null || rate == null || people == null || children == null){
             orderPurchaseResult.put("code", -1);
             orderPurchaseResult.put("message", "exists field in request is null");
             return;
         }
+        offer = offer == null ? "" : offer;
         Map<String, String> JWTCheckResponse = new HashMap<>();
         customerAccountService.checkJWT(JWT, JWTCheckResponse);
         if (!Objects.equals(JWTCheckResponse.get("code"), "1")){
@@ -76,6 +73,12 @@ public class TransactionServiceImpl implements TransactionService {
         if (!dateValid){
             orderPurchaseResult.put("code", -1);
             orderPurchaseResult.put("message", "date conflicts with existing order");
+            return;
+        }
+        Room room = roomMapper.getRoomById(Integer.valueOf(roomId));
+        if (room == null){
+            orderPurchaseResult.put("code", -1);
+            orderPurchaseResult.put("message", "room id invalid");
             return;
         }
         int intRate = Integer.parseInt(rate);
@@ -126,10 +129,9 @@ public class TransactionServiceImpl implements TransactionService {
                 0,
                 false
         ));
-        assert roomOffer != null;
         customerMapper.setPointsById(
                 Integer.valueOf(userId),
-                Math.max(0, (int)(customer.getPoints() - purchasePrice / roomOffer.getRatio()))
+                Math.max(0, (int)(customer.getPoints() - purchasePrice / PricingProp.POINTS_RATIO))
         );
         orderPurchaseResult.put("code", 0);
         orderPurchaseResult.put("message", "success");

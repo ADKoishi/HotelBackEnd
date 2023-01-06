@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan({"com.sustech.ooad.mapper.dataMappers", "com.sustech.ooad.mapper.geoInfoMappers"})
+@MapperScan({"com.sustech.ooad.mapper.*"})
 public class HotelApplication {
 
 	public static void main(String[] args) {
