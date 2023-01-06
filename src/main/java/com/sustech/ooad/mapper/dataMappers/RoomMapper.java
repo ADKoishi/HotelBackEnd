@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface RoomMapper extends BaseMapper<Room> {
     List<Room> getRoomByTowerAndFloor(Integer towerId, Integer floorNumber);
+    Room getRoomById(Integer id);
 }

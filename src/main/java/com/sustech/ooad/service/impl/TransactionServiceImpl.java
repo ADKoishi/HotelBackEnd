@@ -1,5 +1,6 @@
 package com.sustech.ooad.service.impl;
 
+import com.sustech.ooad.Utils.JWTUtils;
 import com.sustech.ooad.entity.data.Category;
 import com.sustech.ooad.entity.data.Customer;
 import com.sustech.ooad.entity.data.Offer;
@@ -9,6 +10,7 @@ import com.sustech.ooad.mapper.dataMappers.CustomerMapper;
 import com.sustech.ooad.mapper.dataMappers.OfferMapper;
 import com.sustech.ooad.mapper.dataMappers.OrderMapper;
 import com.sustech.ooad.property.PricingProp;
+import com.sustech.ooad.service.CustomerAccountService;
 import com.sustech.ooad.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,9 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -28,9 +32,11 @@ public class TransactionServiceImpl implements TransactionService {
     OfferMapper offerMapper;
     @Autowired
     CustomerMapper customerMapper;
+    @Autowired
+    CustomerAccountService customerAccountService;
     @Override
     public void orderPurchase(Map<String, String> requestInfo, Map<String, Object> orderPurchaseResult) {
-        String userId = requestInfo.get("customer");
+        String JWT = requestInfo.get("customer");
         String start = requestInfo.get("start");
         String end = requestInfo.get("end");
         String hotelId = requestInfo.get("hotel");
@@ -40,12 +46,21 @@ public class TransactionServiceImpl implements TransactionService {
         String offer = requestInfo.get("offer");
         String people = requestInfo.get("people");
         String children = requestInfo.get("children");
-        if(userId == null || start == null || end == null || hotelId == null || roomId == null
+        if(JWT == null || start == null || end == null || hotelId == null || roomId == null
                 || categoryId == null || rate == null || offer == null || people == null || children == null){
             orderPurchaseResult.put("code", -1);
             orderPurchaseResult.put("message", "exists field in request is null");
             return;
         }
+        Map<String, String> JWTCheckResponse = new HashMap<>();
+        customerAccountService.checkJWT(JWT, JWTCheckResponse);
+        if (!Objects.equals(JWTCheckResponse.get("code"), "1")){
+            orderPurchaseResult.put("code", -1);
+            orderPurchaseResult.put("message", "user authentication failed");
+            return;
+        }
+        String userId = String.valueOf(JWTUtils.decode(JWT).getClaim("user_id"));
+        userId = userId.replaceAll("\"", "");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date sqlStartDate, sqlEndDate;
         try {

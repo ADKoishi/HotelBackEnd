@@ -221,7 +221,7 @@ CREATE TABLE reviews (
 			
 	user_id INTEGER NOT NULL,
 
-	order_number VARCHAR NOT NULL,
+	order_id INTEGER NOT NULL,
 	
 	language VARCHAR(5) NOT NULL DEFAULT 'en-us',
 		

@@ -12,7 +12,6 @@ public interface RoomSelectionService {
             Map<String, Object> HotelInfoResponse
     );
     void getFloorRooms(
-            String hotelCode,
             Map<String, String> requestInfo,
             Map<String, Object> FloorRoomsResponse
     );

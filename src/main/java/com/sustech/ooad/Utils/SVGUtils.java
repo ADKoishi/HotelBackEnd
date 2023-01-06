@@ -26,26 +26,26 @@ public class SVGUtils {
         }
     }
 
-    public static List<Double> resolvePolygonPoints(String points, int width, int height){
+    public static List<Integer> resolvePolygonPoints(String points, int width, int height){
         String[] pointsArr = points.split(" ");
-        List<Double> percentageCoordinates = new ArrayList<>();
+        List<Integer> percentageCoordinates = new ArrayList<>();
         int widthOn = 1;
         int heightOn = 0;
         for (String point : pointsArr) {
-            percentageCoordinates.add(Double.parseDouble(point)/(widthOn * width + heightOn * height));
+            percentageCoordinates.add((int)(Double.parseDouble(point)/(widthOn * width + heightOn * height)*100));
             widthOn = widthOn == 1 ? 0 : 1;
             heightOn = heightOn == 1 ? 0 : 1;
         }
         return percentageCoordinates;
     }
 
-    public static List<List<Double>> parseSvgFile(String filePath) throws IOException, SAXException {
+    public static List<List<Integer>> parseSvgFile(String filePath) throws IOException, SAXException {
         Document document = builder.parse(filePath);
         Element svgElement = document.getDocumentElement();
         int width = Integer.parseInt(svgElement.getAttribute("width").replaceAll("px",""));
         int height = Integer.parseInt(svgElement.getAttribute("height").replaceAll("px",""));
         NodeList gList = document.getElementsByTagName("g");
-        List<List<Double>> percentageCoordinates = new ArrayList<>();
+        List<List<Integer>> percentageCoordinates = new ArrayList<>();
         if (!(gList.getLength() > 0))
             return percentageCoordinates;
 
@@ -69,8 +69,8 @@ public class SVGUtils {
                 double newX = Double.parseDouble(xStr) + Double.parseDouble(widthStr);
                 double newY = (Double.parseDouble(yStr) + Double.parseDouble(heightStr));
                 pointsStr += " " + newX + " " + yStr;
-                pointsStr += " " + xStr + " " + newY;
                 pointsStr += " " + newX + " " + newY;
+                pointsStr += " " + xStr + " " + newY;
                 percentageCoordinates.add(resolvePolygonPoints(pointsStr, width, height));
             }
         }

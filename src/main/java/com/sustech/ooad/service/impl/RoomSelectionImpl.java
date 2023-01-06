@@ -52,8 +52,8 @@ public class RoomSelectionImpl implements RoomSelectionService {
             singleTowerInfo = new HashMap<>();
             singleTowerInfo.put("id", tower.getId());
             singleTowerInfo.put("name", tower.getName());
-            singleTowerInfo.put("lowest_floor", tower.getLowestFloor());
-            singleTowerInfo.put("highest_floor", tower.getHighestFloor());
+            singleTowerInfo.put("lowestFloor", tower.getLowestFloor());
+            singleTowerInfo.put("highestFloor", tower.getHighestFloor());
             towerArr.add(singleTowerInfo);
         }
 
@@ -62,23 +62,7 @@ public class RoomSelectionImpl implements RoomSelectionService {
                 hotel.getDefaultTower(), hotelDefaultTower.getLowestFloor());
         String defaultFloorSVG = staticProp.getStaticDirectory()
                 + "/tower/" + hotel.getDefaultTower() + "/floor/" + hotelDefaultTower.getLowestFloor() + ".svg";
-        List<List<Double>> roomPercentageCoordinates;
-        try {
-            roomPercentageCoordinates = SVGUtils.parseSvgFile(defaultFloorSVG);
-        } catch (IOException | SAXException e) {
-            return;
-        }
-        assert roomPercentageCoordinates.size() == rooms.size();
-        Map<String, Object> singleRoomInfo;
-        for (int i = 0 ; i < rooms.size() ; i ++){
-            singleRoomInfo = new HashMap<>();
-            singleRoomInfo.put("id", rooms.get(i).getId());
-            String roomName = rooms.get(i).getFloor() + String.format("%03d", i+1);
-            singleRoomInfo.put("name", roomName);
-            singleRoomInfo.put("category", rooms.get(i).getCategory());
-            singleRoomInfo.put("coordinates", roomPercentageCoordinates.get(i));
-            roomArr.add(singleRoomInfo);
-        }
+        extractRoomInfo(roomArr, rooms, defaultFloorSVG);
 
         List<Category> categories = categoryMapper.getCategoriesByHotelId(hotel.getId());
         Map<String, Object> singleCategoryInfo;
@@ -86,10 +70,10 @@ public class RoomSelectionImpl implements RoomSelectionService {
             singleCategoryInfo = new HashMap<>();
             singleCategoryInfo.put("id", category.getId());
             singleCategoryInfo.put("name", category.getName());
-            singleCategoryInfo.put("max_capacity", category.getMaxChildren() + category.getMaxPeople());
-            singleCategoryInfo.put("max_children", category.getMaxChildren());
+            singleCategoryInfo.put("maxCapacity", category.getMaxChildren() + category.getMaxPeople());
+            singleCategoryInfo.put("maxChildren", category.getMaxChildren());
             String hotelGalleryPath = "/gallery/categories/" + category.getId();
-            singleCategoryInfo.put("gallery_size", PathUtils.directoryCount(
+            singleCategoryInfo.put("gallerySize", PathUtils.directoryCount(
                     staticProp.getStaticDirectory() + hotelGalleryPath));
             List<Double> prices = new ArrayList<>();
             prices.add(category.getAvailableRates().charAt(0) == '0' ? -1. : category.getPrice() * PricingProp.STANDARD_RATE);
@@ -107,7 +91,6 @@ public class RoomSelectionImpl implements RoomSelectionService {
 
     @Override
     public void getFloorRooms(
-            String hotelCode,
             Map<String, String> requestInfo,
             Map<String, Object> FloorRoomsResponse
     ) {
@@ -120,7 +103,11 @@ public class RoomSelectionImpl implements RoomSelectionService {
                 Integer.parseInt(towerCode), Integer.parseInt(floorNumber));
         String defaultFloorSVG = staticProp.getStaticDirectory()
                 + "/tower/" + towerCode + "/floor/" + floorNumber + ".svg";
-        List<List<Double>> roomPercentageCoordinates;
+        extractRoomInfo(roomArr, rooms, defaultFloorSVG);
+    }
+
+    private void extractRoomInfo(List<Map<String, Object>> roomArr, List<Room> rooms, String defaultFloorSVG) {
+        List<List<Integer>> roomPercentageCoordinates;
         try {
             roomPercentageCoordinates = SVGUtils.parseSvgFile(defaultFloorSVG);
         } catch (IOException | SAXException e) {
@@ -134,7 +121,16 @@ public class RoomSelectionImpl implements RoomSelectionService {
             String roomName = rooms.get(i).getFloor() + String.format("%03d", i+1);
             singleRoomInfo.put("name", roomName);
             singleRoomInfo.put("category", rooms.get(i).getCategory());
-            singleRoomInfo.put("coordinates", roomPercentageCoordinates.get(i));
+            List<List<Integer>> pairCoordinates = new ArrayList<>();
+            List<Integer> pair;
+            List<Integer> nonPairList = roomPercentageCoordinates.get(i);
+            for (int j = 0 ; j < nonPairList.size() ; j += 2){
+                pair = new ArrayList<>();
+                pair.add(nonPairList.get(j));
+                pair.add(nonPairList.get(j+1));
+                pairCoordinates.add(pair);
+            }
+            singleRoomInfo.put("coordinates", pairCoordinates);
             roomArr.add(singleRoomInfo);
         }
     }

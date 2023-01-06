@@ -101,7 +101,9 @@ public class MapSelectionServiceImpl implements MapSelectionService {
                 );
                 userLogin = true;
             } catch (Exception ignored){}
-
+        String text = requestInfo.get("text");
+        text = text == null ? "" : text;
+        text = "(?i)^.*" + text + ".*$";
         String cityCode = requestInfo.get("city_code");
         List<Hotel> hotelList = null;
         if (cityCode == null){
@@ -173,6 +175,8 @@ public class MapSelectionServiceImpl implements MapSelectionService {
         List<Object> responseList = new ArrayList<>();
         for (int i = 0 ; i < hotelList.size(); i ++) {
             Hotel hotel = hotelList.get(i);
+            if (!hotel.getName().matches(text))
+                continue;
             responseObject = new HashMap<>();
             responseObject.put("name", hotel.getName());
             responseObject.put("id", String.valueOf(hotel.getId()));
@@ -187,13 +191,13 @@ public class MapSelectionServiceImpl implements MapSelectionService {
             String standardRateAvail = hotelMapper.getRateAvail(hotel.getId(), "^1..$") ? "1" : "0";
             String studentRateAvail = hotelMapper.getRateAvail(hotel.getId(), "^.1.$") ? "1" : "0";
             String militaryRateAvail = hotelMapper.getRateAvail(hotel.getId(), "^..1$") ? "1" : "0";
-            responseObject.put("available_rates",
+            responseObject.put("availableRates",
                     Integer.parseInt(standardRateAvail+studentRateAvail+militaryRateAvail, 2));
             responseObject.put("accessible", hotelMapper.hasAccessibleRoom(hotel.getId()));
             responseObject.put("points", hotel.getPointsAvail());
             responseObject.put("amenities", Integer.parseInt(hotel.getAmenities(), 2));
             String hotelGalleryPath = "/gallery/hotels/" + hotel.getId();
-            responseObject.put("gallery_size", PathUtils.directoryCount(
+            responseObject.put("gallerySize", PathUtils.directoryCount(
                     staticProp.getStaticDirectory() + hotelGalleryPath)
             );
             responseObject.put("longitude", hotel.getLongitude());

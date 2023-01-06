@@ -8,4 +8,7 @@
         SELECT * FROM rooms WHERE tower_id = #{towerId} and floor = #{floorNumber}
         ORDER BY id ASC
     </select>
+    <select id="getRoomById" resultType="com.sustech.ooad.entity.data.Room">
+        SELECT * FROM rooms WHERE id = #{id}
+    </select>
 </mapper>

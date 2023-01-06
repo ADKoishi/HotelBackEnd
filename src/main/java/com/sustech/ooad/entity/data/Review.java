@@ -8,7 +8,7 @@ import java.sql.Date;
 public class Review {
     Integer id;
     Integer userId;
-    String orderNumber;
+    Integer orderId;
     String language;
     String title;
     Integer type;
